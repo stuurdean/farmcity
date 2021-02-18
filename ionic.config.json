@@ -1,0 +1,7 @@
+{
+  "name": "farmcity",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
