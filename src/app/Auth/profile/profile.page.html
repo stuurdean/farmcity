@@ -1,0 +1,39 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content>
+    <div class="container">
+
+        
+        <div>
+            <ion-img class="profile" src="../assets/person.svg"></ion-img>
+      
+      <h2>Create Profile</h2>
+        </div>
+        <form #form="ngForm" (ngSubmit)="create(form)">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Enter email">
+
+          </mat-form-field>
+          <br>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Full Names</mat-label>
+            <input matInput  placeholder="Enter Full Names">
+
+
+          </mat-form-field> <br>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Cellphone</mat-label>
+            <input matInput   placeholder="Enter CellPhone">
+
+          </mat-form-field> <br>
+
+          <ion-button type="submit" color="#42d77d" >Save</ion-button>
+
+        </form>
+      </div>
+</ion-content>

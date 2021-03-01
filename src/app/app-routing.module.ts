@@ -8,8 +8,25 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'signin',
     pathMatch: 'full'
+  },
+
+  {
+    path: 'signin',
+    loadChildren: () => import('./Auth/signin/signin.module').then( m => m.SigninPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./Auth/signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'forgotpassword',
+    loadChildren: () => import('./Auth/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./Auth/profile/profile.module').then( m => m.ProfilePageModule)
   },
 ];
 

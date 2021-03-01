@@ -1,0 +1,55 @@
+
+<ion-content>
+  <div slot="fixed" class="container">
+    <div>
+      <ion-img class="logo" src="../assets/logo.png"></ion-img>
+  <h2>Create and Account
+    
+  </h2>
+  <h2>Sign up</h2>
+    </div>
+    <form #form="ngForm" (ngSubmit)="create(form)">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Enter email">
+  
+      </mat-form-field>
+      <br>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+      </mat-form-field> <br>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+      </mat-form-field> <br>
+
+      <ion-button type="submit" color="#42d77d" >Create</ion-button>
+  
+    </form>
+  
+    <div>
+  
+  <p>Already have an Account</p>
+  
+  
+  <a routerLink="/signin" routerLinkActive="active"><strong>Sign Up</strong></a>
+  
+  
+    </div>
+    <div class="bottom">
+  
+      <ion-img class="picture" src="../assets/mixed-fresh-fruits-vegetables-produce.jpg"></ion-img>
+    </div>
+  
+  
+  </div>
+</ion-content>
