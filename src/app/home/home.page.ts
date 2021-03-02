@@ -1,3 +1,4 @@
+import { ProductsserviceService } from './../services/productsservice.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -15,11 +16,16 @@ export class HomePage {
      slidesPerView:2,
     speed: 400
   };
-  constructor() {}
+  products : any;
+  constructor( private firestoreservice : ProductsserviceService) {}
 
-  logging(form:NgForm)
-  {
-      console.log(form.value)
+
+  ngOnInit() {
+
+    this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
+
+      console.log(result)
+    })
   }
 
 }
