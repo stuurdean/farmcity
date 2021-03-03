@@ -12,9 +12,17 @@ export class ProductdetailsPage implements OnInit {
 
   ref :any;
   product :any;
-  constructor(private firestore : ProductsService, private _rout : ActivatedRoute) { }
+  qty : any=1;
+  constructor(private firestore : ProductsService, private _rout : ActivatedRoute) {
+
+
+  }
+
+
 
   ngOnInit() {
+
+
 
     this.ref = this._rout.snapshot.paramMap.get('ref');
 
@@ -23,11 +31,23 @@ export class ProductdetailsPage implements OnInit {
 
       this.product =result;
 
-     
+
 
     })
 
 
+
+  }
+
+  subtract()
+  {
+    if(this.qty>1)
+    this.qty=this.qty-1;
+  }
+
+  add()
+  {
+      this.qty=this.qty+1;
   }
 
 }

@@ -9,23 +9,49 @@
 
 <ion-content *ngIf="product">
   <ion-card>
+    <div class="productImg">
     <img src="{{product.productImage}}" />
+  </div>
     <ion-card-header>
-      <ion-card-subtitle>Brocoli</ion-card-subtitle>
-      <ion-card-title>R99.00</ion-card-title>
+
+      <ion-card-title>R{{product.productPrice}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      Description
+
+
+     <ion-buttons slot="end"color="success"  >
+      <ion-button (click)="subtract()" color="success"  shape="round"   >
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="remove-circle"></ion-icon>
+      </ion-button>
+
+
+          {{qty}}
+      <ion-button (click)="add()"  color="success" >
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="add-circle"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
     </ion-card-content>
   </ion-card>
 
+  <div>
+    <h4>Desription</h4>
+    <p>{{product.productDescription}}</p>
+
+    <h4>Desription</h4>
+    <h4>Desription</h4>
+  </div>
 
 
-    <ion-button>
-      Right Icon
-      <ion-icon slot="end" name="star"></ion-icon>
-    </ion-button>
 
 
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button class="cart button" slot="end" color="success">
+      Add To cart
+      <ion-icon slot="end" name="cart"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
