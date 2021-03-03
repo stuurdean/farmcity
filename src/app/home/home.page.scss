@@ -1,4 +1,7 @@
+.container {
 
+  height: fit-content;
+}
 .header{
 
   width: 350px;
@@ -41,9 +44,7 @@ h4,h3{
   text-decoration: none;
 }
 
-ion-toolbar{
-  height: 100x;
-}
+
 ion-slide {
   width: 50%!important;
 
@@ -51,12 +52,20 @@ ion-slide {
 /* Without setting height the slides will take up the height of the slide's content */
 ion-slides {
 
-}
-img{
-  height: 150px;
-  width: 90%;
+height: 270px;
 
 }
+.productImg
+{
+  width: 80%;
+  height: 150px;
+
+  margin:   auto ;
+  max-width: 600px;
+  text-align: center;
+  align-content: center;
+}
+
 ion-card{
 
 width: 100%;
@@ -70,5 +79,10 @@ ion-card-content{
 }
 ion-card-content ion-icon{
   color: #FFD700;
+
+}
+.last-slide
+{
+
 
 }

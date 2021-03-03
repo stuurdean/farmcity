@@ -3,12 +3,12 @@
 </ion-header>
 
 <ion-content>
-    <div class="container">
+    <div slot="fixed" class="container">
 
-        
+
         <div>
             <ion-img class="profile" src="../assets/person.svg"></ion-img>
-      
+
       <h2>Create Profile</h2>
         </div>
         <form (ngSubmit)="update(UserData)" #UserData="ngForm">

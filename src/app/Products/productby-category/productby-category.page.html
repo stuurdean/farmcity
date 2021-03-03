@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons  slot="start">
+      <ion-back-button text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ref}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ng-container *ngIf="productLength==0; else list">
+      <div class="first">
+
+        <h1>Sorry</h1>
+        <h4> They are No Products in this Category</h4>
+      </div>
+
+
+    </ng-container>
+<ng-template #list>
+
+  <div class="products" *ngFor="let item of product">
+
+    <ion-card [routerLink]="[ '/','productdetails',item.payload.doc.id]" routerLinkActive="active">
+      <img src="{{item.payload.doc.data().productImage}}" />
+      <ion-card-header>
+        <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
+        <ion-card-title>R{{item.payload.doc.data().productPrice}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-icon  name="star"></ion-icon> 5
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ng-template>
+
+
+  </div>
+
+</ion-content>

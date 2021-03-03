@@ -4,6 +4,10 @@
     max-width: 600px;
     padding-top: 10px;
     margin: auto;
+    text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 ion-toolbar{
 
@@ -21,9 +25,11 @@ form ion-button{
 form
 {
     width: 90%;
+    margin: auto;
+
 }
 mat-form-field {
-    
+
     width: 98%;
 }
 .profile{

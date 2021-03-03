@@ -1,3 +1,4 @@
+import { ProductsService } from './../../services/products.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +6,19 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './category.page.html',
   styleUrls: ['./category.page.scss'],
 })
-export class CategoryPage implements OnInit {
 
-  constructor() { }
+
+export class CategoryPage implements OnInit {
+category :any;
+  constructor(private firestore :ProductsService) { }
 
   ngOnInit() {
+
+
+    this.firestore.getCategory().subscribe(result=>{
+
+      this.category=result;
+    })
   }
 
 }

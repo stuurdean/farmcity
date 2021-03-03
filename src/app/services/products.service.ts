@@ -31,7 +31,7 @@ getProducts()
 
   getFruits()
   {
-    return this.firestore.collection('products',ref=> ref.where('productCategory','==','Fruits'))
+    return this.firestore.collection('products',ref=> ref.where('productCategory','==','Fruits').limit(5))
   }
 
 
@@ -39,7 +39,7 @@ getProducts()
 
   getVetables()
   {
-    return this.firestore.collection('products',ref=> ref.where('productCategory','==','Vegetables'))
+    return this.firestore.collection('products',ref=> ref.where('productCategory','==','Vegetables').limit(5))
   }
 
   //get by category
@@ -52,6 +52,11 @@ getProducts()
   getSelectedProduct(ref)
   {
     return this.firestore.collection ('products').doc (ref).valueChanges()
+  }
+
+  getCategory()
+  {
+    return this.firestore.collection('categories').valueChanges()
   }
 
 }
