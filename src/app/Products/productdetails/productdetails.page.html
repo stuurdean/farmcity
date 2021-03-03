@@ -1,15 +1,15 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar *ngIf="product">
     <ion-buttons  slot="start">
       <ion-back-button text="" icon="arrow-back"></ion-back-button>
     </ion-buttons>
-    <ion-title>Productdetails</ion-title>
+    <ion-title>{{product.productName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="product">
   <ion-card>
-    <img src="./assets/broccoli.jpg" />
+    <img src="{{product.productImage}}" />
     <ion-card-header>
       <ion-card-subtitle>Brocoli</ion-card-subtitle>
       <ion-card-title>R99.00</ion-card-title>

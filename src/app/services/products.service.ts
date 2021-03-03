@@ -51,7 +51,7 @@ getProducts()
   // get each product
   getSelectedProduct(ref)
   {
-    return this.firestore.collection ("Students").doc (ref).snapshotChanges()
+    return this.firestore.collection ('products').doc (ref).valueChanges()
   }
 
 }

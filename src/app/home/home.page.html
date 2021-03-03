@@ -129,52 +129,37 @@
     </ion-slides>
 
     <h4>Vegetables</h4>
-    <ion-slides  [options]="slideOpts">
+
+    <ion-slides   [options]="slideOpts">
+
+
+      
+      <ion-slide *ngFor="let item of vegetables">
+
+        <ion-card [routerLink]="[ '/','productdetails',item.payload.doc.id]" routerLinkActive="active">
+          <img src="{{item.payload.doc.data().productImage}}" />
+          <ion-card-header>
+            <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
+            <ion-card-title>R{{item.payload.doc.data().productPrice}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-icon  name="star"></ion-icon> 5
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
 
       <ion-slide >
-        <ion-card>
-          <img src="./assets/tomato.png" />
-          <ion-card-header>
-            <ion-card-subtitle>Tomatoes</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
 
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
+
+          <ion-button color="success">
+            View All
+          </ion-button>
+
       </ion-slide>
 
 
-      <ion-slide >
-        <ion-card>
-          <img src="./assets/carrots.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Carrots</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-
-      <ion-slide>
-        <ion-card>
-          <img src="./assets/broccoli.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Brocoli</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
     </ion-slides>
-
 
 
   </ion-content>

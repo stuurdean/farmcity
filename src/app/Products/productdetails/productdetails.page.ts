@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductdetailsPage implements OnInit {
 
   ref :any;
+  product :any;
   constructor(private firestore : ProductsService, private _rout : ActivatedRoute) { }
 
   ngOnInit() {
@@ -19,6 +20,10 @@ export class ProductdetailsPage implements OnInit {
 
     this.firestore.getSelectedProduct(this.ref).subscribe(result=>{
 
+
+      this.product =result;
+
+     
 
     })
 
