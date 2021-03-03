@@ -11,24 +11,29 @@
       
       <h2>Create Profile</h2>
         </div>
-        <form #form="ngForm" (ngSubmit)="create(form)">
+        <form (ngSubmit)="update(UserData)" #UserData="ngForm">
           <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="Enter email">
+            <mat-label>First-name</mat-label>
+            <input type="name"ngModel matInput #name="ngModel" name="name"[(ngModel)]="profile.name" placeholder="Firstname"required>
 
           </mat-form-field>
           <br>
 
           <mat-form-field appearance="outline">
-            <mat-label>Full Names</mat-label>
-            <input matInput  placeholder="Enter Full Names">
+            <mat-label>Surname</mat-label>
+            <input matInput  placeholder="surname" ngModel #surname="ngModel"[(ngModel)]="profile.surname" name="surname" required>
 
 
           </mat-form-field> <br>
 
           <mat-form-field appearance="outline">
             <mat-label>Cellphone</mat-label>
-            <input matInput   placeholder="Enter CellPhone">
+            <input matInput  type="tel"  placeholder="phone" ngModel #phone="ngModel"[(ngModel)]="profile.phone" name="phone" required>
+
+          </mat-form-field> <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput  placeholder="address" ngModel #address="ngModel" [(ngModel)]="profile.address"name="address" required>
 
           </mat-form-field> <br>
 

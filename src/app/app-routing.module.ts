@@ -25,7 +25,7 @@ const routes: Routes = [
     loadChildren: () => import('./Auth/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
   },
   {
-    path: 'profile',
+    path: 'profile/:ref',
     loadChildren: () => import('./Auth/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {

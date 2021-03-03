@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-signin',
@@ -8,15 +9,15 @@ import { NgForm } from '@angular/forms';
 })
 export class SigninPage implements OnInit {
 
-  constructor() { }
+  constructor(public _data: UserService) { }
 
   ngOnInit() {
   }
 
 
-  logging(form:NgForm)
-  {
-      console.log(form.value)
-  }
+  
+  login(UserData : NgForm){
+    this._data.login(UserData.value.email,UserData.value.password);
+ }
 
 }

@@ -6,23 +6,23 @@
 <h2>Welcome to Farm city <br>
 Sign In</h2>
   </div>
-  <form #form="ngForm" (ngSubmit)="logging(form)">
+  <form #form="ngForm" (ngSubmit)="login(UserData)" #UserData="ngForm">
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input type="email" matInput placeholder="Enter email">
+      <input type="email" matInput placeholder="Enter email" name="email"ngModel required #email="ngModel">
 
     </mat-form-field>
 
 
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter password">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter password" name="password" ngModel required #password="ngModel">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" type="submit"[attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
     </mat-form-field>
  <a routerLink="/forgotpassword" routerLinkActive="active"><p>Forgot Password</p> </a>
-    <ion-button   routerLink="/home" routerLinkActive="active" type="submit" color="#42d77d" >Sign In</ion-button>
+    <ion-button routerLinkActive="active" type="submit" color="#42d77d" >Sign In</ion-button>
 
   </form>
 
