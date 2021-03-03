@@ -1,4 +1,5 @@
 import { ProductsService } from './../../services/products.service';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,7 +19,7 @@ export class ProductdetailsPage implements OnInit {
 
     this.firestore.getSelectedProduct(this.ref).subscribe(result=>{
 
-      
+
     })
 
 

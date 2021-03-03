@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-<<<<<<< Updated upstream
   firebaseConfig : {
     apiKey: "AIzaSyCAQowcvKTiYux3xJpQhW6cPlOtWNHpHHQ",
     authDomain: "farmcity-7af72.firebaseapp.com",
@@ -15,11 +14,6 @@ export const environment = {
     measurementId: "G-RPLM8EMWND"
   }
 
-=======
- 
- 
- 
->>>>>>> Stashed changes
 };
 
 /*
