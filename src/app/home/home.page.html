@@ -83,112 +83,31 @@
   <ion-content [fullscreen]="true">
 
     <h4>Daily Deals</h4>
-    <ion-slides  [options]="slideOpts">
 
-      <ion-slide >
-        <ion-card>
+    <ng-container  *ngIf="promotionNo ==0; else promo "  >
 
-          <img src="./assets/tomato.png" />
-          <ion-card-header>
-            <ion-card-subtitle>Tomatoes</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
+      <h3>They are Currently No Promotions </h3>
+    </ng-container>
 
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <img src="./assets/lemon.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Lemons</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
+    <ng-template #promo>
 
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <img src="./assets/green.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Green Apples</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
 
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide >
-        <ion-card>
-          <img src="./assets/carrots.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Carrots</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
 
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <img src="./assets/orange.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Orange</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
 
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <img src="./assets/red.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Red Apples</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
+    </ng-template>
 
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-    </ion-slides>
 
     <h4>Fruits</h4>
-    <ion-slides  [options]="slideOpts">
+    <ion-slides   [options]="slideOpts">
 
 
-      <ion-slide>
-        <ion-card>
-          <img src="./assets/lemon.jpg" />
+      <ion-slide *ngFor="let item of fruits">
+
+        <ion-card [routerLink]="[ '/','productdetails',item.payload.doc.id]" routerLinkActive="active">
+          <img src="{{item.payload.doc.data().productImage}}" />
           <ion-card-header>
-            <ion-card-subtitle>Lemons</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <img src="./assets/green.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Green Apples</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
+            <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
+            <ion-card-title>R{{item.payload.doc.data().productPrice}}</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
@@ -197,32 +116,16 @@
         </ion-card>
       </ion-slide>
 
-      <ion-slide>
-        <ion-card>
-          <img src="./assets/orange.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Orange</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
+      <ion-slide >
 
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <img src="./assets/red.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Red Apples</ion-card-subtitle>
-            <ion-card-title>R99.00</ion-card-title>
-          </ion-card-header>
 
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
+          <ion-button color="success">
+            View All
+          </ion-button>
+
       </ion-slide>
+
+
     </ion-slides>
 
     <h4>Vegetables</h4>
@@ -272,7 +175,7 @@
       </ion-slide>
     </ion-slides>
 
-    
+
 
   </ion-content>
 </ion-router-outlet>

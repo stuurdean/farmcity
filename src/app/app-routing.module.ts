@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'signin',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
 
@@ -29,7 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('./Auth/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    path: 'productdetails',
+    path: 'productdetails/:ref',
     loadChildren: () => import('./Products/productdetails/productdetails.module').then( m => m.ProductdetailsPageModule)
   },
 ];

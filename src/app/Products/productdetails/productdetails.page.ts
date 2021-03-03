@@ -1,4 +1,6 @@
+import { ProductsService } from './../../services/products.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-productdetails',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductdetailsPage implements OnInit {
 
-  constructor() { }
+  ref :any;
+  constructor(private firestore : ProductsService, private _rout : ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.ref = this._rout.snapshot.paramMap.get('ref');
+
+    this.firestore.getSelectedProduct(this.ref).subscribe(result=>{
+
+      
+    })
+
+
   }
 
 }
