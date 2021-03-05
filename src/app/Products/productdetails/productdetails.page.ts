@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { ProductsService } from './../../services/products.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -10,10 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductdetailsPage implements OnInit {
 
-  ref :any;
+  id :any;
   product :any;
+  addproduct: any;
   qty : any=1;
-  constructor(private firestore : ProductsService, private _rout : ActivatedRoute) {
+  cart=[];
+  constructor(private firestore : ProductsService, private _rout : ActivatedRoute,private _cartservice :CartService) {
 
 
   }
@@ -24,9 +27,9 @@ export class ProductdetailsPage implements OnInit {
 
 
 
-    this.ref = this._rout.snapshot.paramMap.get('ref');
+    this.id = this._rout.snapshot.paramMap.get('ref');
 
-    this.firestore.getSelectedProduct(this.ref).subscribe(result=>{
+    this.firestore.getSelectedProduct(this.id).subscribe(result=>{
 
 
       this.product =result;
@@ -36,6 +39,9 @@ export class ProductdetailsPage implements OnInit {
     })
 
 
+    this.cart=this._cartservice.getCart();
+
+    console.log(this.cart)
 
   }
 
@@ -48,6 +54,18 @@ export class ProductdetailsPage implements OnInit {
   add()
   {
       this.qty=this.qty+1;
+  }
+
+  addToCart()
+  {
+    this.addproduct={'id' : this.id,
+      'productName' : this.product.productName,
+      'productPrice' : this.product.productPrice,
+      'productImage' : this.product.productImage,
+      'productQty': this.qty}
+
+      this._cartservice.addTocart(this.addproduct)
+
   }
 
 }

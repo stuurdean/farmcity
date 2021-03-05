@@ -1,7 +1,9 @@
+import { CartService } from './../services/cart.service';
 import { ProductsService } from './../services/products.service';
 
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -22,22 +24,30 @@ export class HomePage {
   promotion : any;
   promotionNo :any;
   vegetables : any;
-  constructor( private firestoreservice :ProductsService) {}
+  cartCount : BehaviorSubject<number>;
+  constructor( private firestoreservice :ProductsService,private cartservice : CartService) {}
 
 
   ngOnInit() {
 
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
 
-      console.log(result);
+
       this.products=result;
+
     });
+
+    //Getting Cart Count
+
+    this.cartCount =this.cartservice.getCartCount();
 
     //getting fruits from firebase
 
+
     this.firestoreservice.getFruits().snapshotChanges().subscribe(result=>{
 
-      console.log(result)
+
+
 
       this.fruits=result;
 

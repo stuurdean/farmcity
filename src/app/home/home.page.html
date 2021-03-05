@@ -1,10 +1,9 @@
 
-<ion-split-pane when="md" contentId="main">
 
-  <ion-menu menuId="main-menu" content-id="main"   >
+  <ion-menu menuId="main" content-id="main"   >
  <ion-header>
    <div class="header">
-   <ion-img src="../assets/logo.png "></ion-img>
+   <ion-img src="../assets/logo.png"></ion-img>
    <div class="details">
 
     <h1>Full Names</h1>
@@ -61,22 +60,35 @@
 
 
 
-<ion-router-outlet id="main">
+<ion-router-outlet id="main"></ion-router-outlet>
+
+
 
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-title>Home</ion-title>
 
         <ion-buttons slot="start">
-          <ion-menu-button  color="success"  slot="start" menu="main-menu"></ion-menu-button>
+          <ion-menu-button  color="success"  slot="start" menu="main"></ion-menu-button>
         </ion-buttons>
 
 
-        <ion-buttons slot="primary">
-          <ion-button  >
-            <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="cart"></ion-icon>
+        <ion-buttons slot="end" [routerLink]="[ '/home/cart' ]" routerLinkActive="active"  >
+
+            <ion-button >
+            <ion-icon  size="large"  slot="icon-only" class="cart-icon" ios="ellipsis-horizontal" md="cart">
+
+
+            </ion-icon>
+
           </ion-button>
+
+          <ion-badge color="success" style="position: absolute; right: -1px; top: 0px; ">{{cartCount|async}}</ion-badge>
+
         </ion-buttons>
+
+
+
 
 
     </ion-toolbar>
@@ -87,8 +99,16 @@
   </ion-header>
 
   <ion-content >
+    <ion-card>
+
+      <div class="">
+
+        <ion-img src="..//assets/logo.png"></ion-img>
+      </div>
+    </ion-card>
 
     <div class="container">
+
     <h4>Daily Deals</h4>
 
     <ng-container  *ngIf="promotionNo ==0; else promo "  >
@@ -185,11 +205,11 @@
     </ion-slides>
   </div>
 
-  
+
   <h4>Click  category on Navigation to View Other categories</h4>
 
   </ion-content>
 
 
-</ion-router-outlet>
-</ion-split-pane>
+
+

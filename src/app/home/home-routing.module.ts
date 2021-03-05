@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+  },
+  {
+    path: 'cart',
+    loadChildren: () => import('../Home/cart/cart.module').then( m => m.CartPageModule)
   }
 ];
 

@@ -1,7 +1,4 @@
-.container {
 
-  height: fit-content;
-}
 .header{
 
   width: 350px;
@@ -68,7 +65,7 @@ height: 270px;
 
 ion-card{
 
-width: 100%;
+
 
 
 }
@@ -81,8 +78,15 @@ ion-card-content ion-icon{
   color: #FFD700;
 
 }
+
 .last-slide
 {
 
 
+}
+
+
+ion-toolbar{
+
+  --min-height:50px
 }

@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons  slot="start">
+      <ion-back-button text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  <div *ngFor="let item of cartinfo">
+
+
+  <ion-card >
+
+
+
+    <ion-row>
+      <ion-col size="4">
+        <div class="image">
+
+          <ion-img src="{{item.productImage}}"></ion-img>
+
+        </div>
+
+      </ion-col>
+      <ion-col size="5">
+        <ion-card-subtitle>{{item.productName}}  {{item.productPrice|currency:'R'}}</ion-card-subtitle>
+
+
+
+          <ion-buttons color="success"  >
+
+            <ion-button (click)="subtract(item)" color="success"  shape="round"   >
+              <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="remove-circle"></ion-icon>
+            </ion-button>
+
+           {{item.productQty}}
+
+            <ion-button (click)="add(item)"  color="success" >
+              <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="add-circle"></ion-icon>
+            </ion-button>
+
+          </ion-buttons>
+
+      </ion-col>
+      <ion-col>
+        <ion-buttons (click)="remove(item)"  >
+
+          <ion-button color="danger" >
+          <ion-icon   slot="icon-only"  ios="ellipsis-horizontal" md="trash">
+
+
+          </ion-icon>
+
+        </ion-button>
+        </ion-buttons>
+      </ion-col>
+
+    </ion-row>
+
+
+
+
+
+  </ion-card>
+
+</div>
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="cart-button">
+    <ion-button  (click)="placeOrder()"  expand="block" color="success">
+      Place Order
+
+    </ion-button>
+  </div>
+  </ion-toolbar>
+</ion-footer>

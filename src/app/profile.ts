@@ -1,4 +1,5 @@
 export interface Profile{
+  uid:string;
     name:string;
     surname:string;
     phone:string;
@@ -6,3 +7,5 @@ export interface Profile{
 
 
 }
+
+
