@@ -33,7 +33,7 @@ export class HomePage {
   ngOnInit() {
 
 
-    console.log(this.profile.name)
+    console.log(this.profile)
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
 
 
