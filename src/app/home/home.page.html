@@ -93,7 +93,7 @@
 
     </ion-toolbar>
     <ion-toolbar>
-      <ion-searchbar  ></ion-searchbar>
+      <ion-searchbar (ionInput)="search($event)">  </ion-searchbar>
     </ion-toolbar>
 
   </ion-header>
@@ -122,7 +122,45 @@
 
 
     </ng-template>
+    <ion-slides   [options]="slideOpts">
 
+
+      <ion-slide *ngFor="let items of resultArr">
+
+        <ion-card [routerLink]="[ '/','productdetails',items.payload.doc.id]" routerLinkActive="active">
+
+          <div class="productImg">
+
+            <img src="{{item.payload.doc.data().productImage}}" />
+
+          </div>
+
+          <ion-card-header>   
+            <ion-card-subtitle>{{items.payload.doc.data().productName}}</ion-card-subtitle>
+            <ion-card-title>R{{items.payload.doc.data().productPrice}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-icon  name="star"></ion-icon> 5
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide >
+        <div class="last-slide">
+
+          <ion-button color="success">
+            View All
+          </ion-button>
+
+        </div>
+
+
+
+      </ion-slide>
+
+
+    </ion-slides>
 
     <h4>Fruits</h4>
     <ion-slides   [options]="slideOpts">
@@ -138,7 +176,7 @@
 
           </div>
 
-          <ion-card-header>
+          <ion-card-header>   
             <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
             <ion-card-title>R{{item.payload.doc.data().productPrice}}</ion-card-title>
           </ion-card-header>
