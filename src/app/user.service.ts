@@ -19,8 +19,9 @@ export class UserService {
   constructor(public fireAuth: AngularFireAuth, public _fire:AngularFirestore,private Toast:ToastController,public afDatabase:AngularFireDatabase,public navCtrl:NavController,public _route : Router,private router:Router) { }
   profile ={} as Profile;
 
-    private user :Profile
+    private person :Profile
  details:any;
+ email:any;
 
 
 
@@ -149,32 +150,34 @@ export class UserService {
 
       this.fireAuth.signInWithEmailAndPassword(email,password).then(info=>{
 
-     console.log('succefully login', info)
-      this.router.navigate(['/home']);
-
-     this._fire.collection('user').doc(info.user.uid).valueChanges().subscribe(res=>{
-
-      this.details= res;
-        this.user ={
-              uid=this
-          name:string;
-    surname:string;
-    phone:string;
-    address:string;
-          }
-
-     }
+     console.log('succefully login', info.user.uid)
 
 
-     )
+        this.getUser(info.user.uid)
 
-      }).catch(info=>{
-        console.log('smothing went wrong',info.message)
+      }).catch(err=>{
+        console.log('smothing went wrong',err.message)
       })
     }
 
 
+    getUser(uid)
+    {
+        return this._fire.collection('users').doc(uid).valueChanges().subscribe(res=>{
 
+          this.details = res;
+          this.person={
+            uid:this.details.uid,
+    name:this.details.name,
+    surname:this.details.surname,
+    phone:this.details.phone,
+    address:this.details.address
+          }
+
+          console.log(this.person)
+        })
+
+    }
 
 
 }

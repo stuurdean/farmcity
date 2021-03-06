@@ -1,3 +1,4 @@
+import { Profile } from 'src/app/profile';
 import { CartService } from './../services/cart.service';
 import { ProductsService } from './../services/products.service';
 
@@ -28,8 +29,11 @@ export class HomePage {
   constructor( private firestoreservice :ProductsService,private cartservice : CartService) {}
 
 
+  private profile :Profile;
   ngOnInit() {
 
+
+    console.log(this.profile.name)
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
 
 

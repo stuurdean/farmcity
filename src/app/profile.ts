@@ -1,5 +1,5 @@
 export interface Profile{
-  uid:string;
+     uid:string;
     name:string;
     surname:string;
     phone:string;
