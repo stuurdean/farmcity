@@ -4,14 +4,9 @@ import { ProductsService } from './../services/products.service';
 
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-<<<<<<< Updated upstream
 import { BehaviorSubject } from 'rxjs';
-=======
-import {first} from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
-import * as firebase from "firebase";
-import { snapshotChanges } from '@angular/fire/database';
->>>>>>> Stashed changes
+import { first } from 'rxjs/operators';
 
 
 @Component({
@@ -21,9 +16,14 @@ import { snapshotChanges } from '@angular/fire/database';
 
 })
 export class HomePage {
+  public foodList: any[];
+  public foodListBackup: any[];
+  public goalList:any[];
+public loadedGoalList: any[];
+
 sampleArr=[];
 resultArr=[];
- public foodlist:any;
+
  searchedUsers=[];
   slideOpts = {
     initialSlide: 0,
@@ -36,26 +36,17 @@ resultArr=[];
   promotion : any;
   promotionNo :any;
   vegetables : any;
-<<<<<<< Updated upstream
   cartCount : BehaviorSubject<number>;
-  constructor( private firestoreservice :ProductsService,private cartservice : CartService) {}
-=======
-  constructor( private firestoreservice :ProductsService,private firestore:AngularFirestore) {}
->>>>>>> Stashed changes
+  constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore) {}
 
 
   private profile :Profile;
-  ngOnInit() {
+   async ngOnInit() {
+    this.foodList = await this.initializeItems();
 
-<<<<<<< Updated upstream
 
     console.log(this.profile)
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
-=======
-   
-
-   this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
->>>>>>> Stashed changes
 
 
       this.products=result;
@@ -68,12 +59,8 @@ resultArr=[];
 
     //getting fruits from firebase
 
-<<<<<<< Updated upstream
 
     this.firestoreservice.getFruits().snapshotChanges().subscribe(result=>{
-=======
-     this.firestoreservice.getFruits().snapshotChanges().subscribe(result=>{
->>>>>>> Stashed changes
 
 
 
@@ -102,6 +89,29 @@ resultArr=[];
 
 
   }
+
+  
+async initializeItems(): Promise<any> {
+  const foodList = await this.firestore.collection('products')
+    .valueChanges().pipe(first()).toPromise();
+  this.foodListBackup = foodList;
+  return foodList;
+}
+async filterList(event) {
+  this.foodList = await this.initializeItems();
+  const searchTerm = event.srcElement.value;
+
+  if (!searchTerm) {
+    return;
+  }
+
+  this.foodList = this.foodList.filter(currentFood => {
+    if (currentFood.productName && searchTerm) {
+      return (currentFood.productName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 )
+    }
+  });
+}
+
 
   
 
@@ -139,58 +149,58 @@ resultArr=[];
 
  // }
 
- search(event){
-let searchKey: string =event.target.value;
-let firstLetter= searchKey.toUpperCase();
-if(searchKey.length==0){
-this.sampleArr=[];
-this.resultArr=[];
-}
+ //search(event){
+//let searchKey: string =event.target.value;
+//let firstLetter= searchKey.toUpperCase();
+//if(searchKey.length==0){
+//this.sampleArr=[];
+//this.resultArr=[];
+//}
 
-if(this.sampleArr.length==0)
-{
-this.firestore.collection('products',ref=>ref.where('Search','==',firstLetter)).snapshotChanges()
-.subscribe(data=>{
-data.forEach(childData=>{
+//if(this.sampleArr.length==0)
+//{
+//this.firestore.collection('products',ref=>ref.where('Search','==',firstLetter)).snapshotChanges()
+//.subscribe(data=>{
+//data.forEach(childData=>{
 
-  this.sampleArr.push(childData.payload.doc.data())
-}
-
-
-)
+  //this.sampleArr.push(childData.payload.doc.data())
+//}
 
 
-
-}
+//)
 
 
 
-)
-
-}
-else{
-
-this.resultArr=[];
-this.sampleArr.forEach(val=>{
-
-let name:string=val['productName'];
-if(name.toUpperCase().startsWith(searchKey.toUpperCase()))
-{if(true){
-this.resultArr.push(val);
-}
-
-}
-
-}
+//}
 
 
 
-)
+//)
 
-}
+//}
+//else{
+
+//this.resultArr=[];
+//this.sampleArr.forEach(val=>{
+
+//let name:string=val['productName'];
+//if(name.toUpperCase().startsWith(searchKey.toUpperCase()))
+//{if(true){
+//this.resultArr.push(val);
+//}
+
+//}
+
+//}
 
 
- }
+
+//)
+
+//}
+
+
+ //}
 
 
 

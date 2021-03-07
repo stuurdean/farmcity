@@ -93,12 +93,23 @@
 
     </ion-toolbar>
     <ion-toolbar>
-      <ion-searchbar (ionInput)="search($event)">  </ion-searchbar>
+      <ion-searchbar     showcancelbutton=""
+      (ionInput)="filterList($event)">  </ion-searchbar>
     </ion-toolbar>
 
   </ion-header>
 
+
+
+  
+
   <ion-content >
+
+    
+
+
+
+
     <ion-card>
 
       <div class="">
@@ -124,20 +135,20 @@
     </ng-template>
     <ion-slides   [options]="slideOpts">
 
+      <!--let foodItem  of foodList-->
+      <ion-slide *ngFor="let foodItem  of foodList">
 
-      <ion-slide *ngFor="let items of resultArr">
-
-        <ion-card [routerLink]="[ '/','productdetails',items.payload.doc.id]" routerLinkActive="active">
+        <ion-card [routerLink]="[ '/','productdetails',foodItem.id]" routerLinkActive="active">
 
           <div class="productImg">
 
-            <img src="{{item.payload.doc.data().productImage}}" />
+            <img src="{{foodItem.productImage}}" />
 
           </div>
 
           <ion-card-header>   
-            <ion-card-subtitle>{{items.payload.doc.data().productName}}</ion-card-subtitle>
-            <ion-card-title>R{{items.payload.doc.data().productPrice}}</ion-card-title>
+            <ion-card-subtitle>{{foodItem.productName}}</ion-card-subtitle>
+            <ion-card-title>R{{foodItem.productPrice}}</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
