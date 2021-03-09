@@ -41,13 +41,13 @@ resultArr=[];
   cartCount : BehaviorSubject<number>;
   constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService) {}
 
-  profile ={} as Profile;
- // public profile :Profile;
+  //profile ={} as Profile;
+  public profile :Profile;
    async ngOnInit() {
    // this.foodList = await this.initializeItems();
 
 
-    console.log(this.userService.profile)
+    console.log(this.profile)
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
 
 

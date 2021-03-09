@@ -165,16 +165,11 @@ export class UserService {
     {
         return this._fire.collection('users').doc(uid).valueChanges().subscribe(res=>{
 
-          this.details = res;
-          this.profile={
-            uid:this.details.uid,
-    name:this.details.name,
-    surname:this.details.surname,
-    phone:this.details.phone,
-    address:this.details.address
-          }
-
-          console.log(this.profile)
+        
+        const data =res as Profile;
+        
+          this.router.navigate(['/home'])
+          console.log(data)
         })
 
     }
