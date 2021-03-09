@@ -16,7 +16,7 @@ import { Profile } from './profile';
 })
 export class UserService {
 
-  constructor(public fireAuth: AngularFireAuth, public _fire:AngularFirestore,private Toast:ToastController,public afDatabase:AngularFireDatabase,public navCtrl:NavController,public _route : Router,private router:Router) { }
+  constructor(public fireAuth: AngularFireAuth, public _fire:AngularFirestore,private Toast:ToastController,public afDatabase:AngularFireDatabase,public navCtrl:NavController,public _route : Router,private router:Router,private storage :Storage) { }
   profile ={} as Profile;
 
     public person :Profile
@@ -168,6 +168,7 @@ export class UserService {
         
         const data =res as Profile;
         
+        this.storage.set(res)
           this.router.navigate(['/home'])
           console.log(data)
         })
