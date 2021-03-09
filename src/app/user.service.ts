@@ -19,7 +19,7 @@ export class UserService {
   constructor(public fireAuth: AngularFireAuth, public _fire:AngularFirestore,private Toast:ToastController,public afDatabase:AngularFireDatabase,public navCtrl:NavController,public _route : Router,private router:Router) { }
   profile ={} as Profile;
 
-    private person :Profile
+    public person :Profile
  details:any;
  email:any;
 
@@ -166,7 +166,7 @@ export class UserService {
         return this._fire.collection('users').doc(uid).valueChanges().subscribe(res=>{
 
           this.details = res;
-          this.person={
+          this.profile={
             uid:this.details.uid,
     name:this.details.name,
     surname:this.details.surname,
@@ -174,7 +174,7 @@ export class UserService {
     address:this.details.address
           }
 
-          console.log(this.person)
+          console.log(this.profile)
         })
 
     }

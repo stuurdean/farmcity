@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { first } from 'rxjs/operators';
+import { UserService } from '../user.service';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -37,15 +39,15 @@ resultArr=[];
   promotionNo :any;
   vegetables : any;
   cartCount : BehaviorSubject<number>;
-  constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore) {}
+  constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService) {}
 
-
-  private profile :Profile;
+  profile ={} as Profile;
+ // public profile :Profile;
    async ngOnInit() {
-    this.foodList = await this.initializeItems();
+   // this.foodList = await this.initializeItems();
 
 
-    console.log(this.profile)
+    console.log(this.userService.profile)
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
 
 
