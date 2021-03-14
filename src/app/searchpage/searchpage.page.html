@@ -1,0 +1,140 @@
+
+
+  <ion-menu menuId="main" content-id="main"   >
+    <ion-header>
+      <div class="header" *ngIf="display">
+      <ion-img src="../assets/logo.png"></ion-img>
+      <div class="details">
+   
+       <h1>{{display.name}}</h1>
+      <ion-note>{{display.email}}</ion-note>
+   
+      </div>
+   
+     </div>
+    </ion-header>
+     <ion-content>
+       <ion-list lines="none">
+         <ion-item>
+           <ion-icon  name="Home-outline" slot="start"></ion-icon>
+           <ion-label>Home</ion-label>
+         </ion-item>
+         <ion-menu-toggle>
+   
+           <ion-item  [routerLink]="[ '/category' ]" routerLinkActive="active">
+             <ion-icon name="grid-outline" slot="start"></ion-icon>
+             <ion-label>Category</ion-label>
+           </ion-item>
+   
+   
+         </ion-menu-toggle>
+   
+         <ion-item>
+           <ion-icon name="pricetags-outline" slot="start"></ion-icon>
+           <ion-label>Order</ion-label>
+         </ion-item>
+         <ion-item>
+           <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+   
+           <ion-label>My accunt</ion-label>
+         </ion-item>
+         <ion-item>
+           <ion-icon name="settings-outline" slot="start"></ion-icon>
+   
+           <ion-label>Settings</ion-label>
+         </ion-item>
+         <ion-item>
+           <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+   
+           <ion-label>Help</ion-label>
+         </ion-item>
+         <ion-item>
+   
+           <ion-icon name="log-out-outline" slot="start"></ion-icon>
+           <ion-label>Log Out</ion-label>
+         </ion-item>
+       </ion-list>
+     </ion-content>
+   </ion-menu>
+   
+   
+   
+   
+   <ion-router-outlet id="main"></ion-router-outlet>
+   
+   
+   
+     <ion-header [translucent]="true">
+       <ion-toolbar>
+         <ion-title>search</ion-title>
+   
+           <ion-buttons slot="start">
+             <ion-menu-button  color="success"  slot="start" menu="main"></ion-menu-button>
+           </ion-buttons>
+   
+   
+           <ion-buttons slot="end" [routerLink]="[ '/home/cart' ]" routerLinkActive="active"  >
+   
+               <ion-button >
+               <ion-icon  size="large"  slot="icon-only" class="cart-icon" ios="ellipsis-horizontal" md="cart">
+   
+   
+               </ion-icon>
+   
+             </ion-button>
+   
+             
+   
+           </ion-buttons>
+   
+   
+   
+   
+   
+       </ion-toolbar>
+       <ion-toolbar>
+         <ion-searchbar     showcancelbutton=""
+         (ionInput)="filterList($event)">  </ion-searchbar>
+       </ion-toolbar>
+   
+     </ion-header>
+
+     <ion-content >
+
+
+      
+    <ion-card>
+
+      <div class="">
+
+        <ion-img src="..//assets/logo.png"></ion-img>
+      </div>
+    </ion-card>
+
+ <!--let foodItem  of foodList-->
+ <ion-slide *ngFor="let foodItem  of foodList">
+
+  <ion-card [routerLink]="[ '/','productdetails',foodItem.id]" routerLinkActive="active">
+
+    <div class="productImg">
+
+      <img src="{{foodItem.productImage}}" />
+
+    </div>
+
+    <ion-card-header>   
+      <ion-card-subtitle>{{foodItem.productName}}</ion-card-subtitle>
+      <ion-card-title>R{{foodItem.productPrice}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-icon  name="star"></ion-icon> 5
+    </ion-card-content>
+  </ion-card>
+</ion-slide>
+
+
+
+
+
+     </ion-content>

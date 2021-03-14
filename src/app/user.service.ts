@@ -175,5 +175,11 @@ export class UserService {
 
     }
 
+    getuuser(){
+     return this.fireAuth.authState;
+
+    
+    }
+
 
 }

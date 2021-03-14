@@ -8,7 +8,11 @@ import { BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { first } from 'rxjs/operators';
 import { UserService } from '../user.service';
+<<<<<<< Updated upstream
 import * as firebase from 'firebase';
+=======
+import { Router } from '@angular/router';
+>>>>>>> Stashed changes
 
 
 @Component({
@@ -22,6 +26,7 @@ export class HomePage {
   public foodListBackup: any[];
   public goalList:any[];
 public loadedGoalList: any[];
+public  display:any;
 
 sampleArr=[];
 resultArr=[];
@@ -39,7 +44,11 @@ resultArr=[];
   promotionNo :any;
   vegetables : any;
   cartCount : BehaviorSubject<number>;
+<<<<<<< Updated upstream
   constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService) {}
+=======
+  constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,public user:UserService,public _route : Router) {}
+>>>>>>> Stashed changes
 
   //profile ={} as Profile;
   public profile :Profile;
@@ -47,7 +56,24 @@ resultArr=[];
    // this.foodList = await this.initializeItems();
 
 
-    console.log(this.profile)
+  this.user.getuuser().subscribe(ex=>    
+ { console.log(ex.email);
+  this.firestore.collection('users').doc(ex.uid).valueChanges().subscribe(lov=>{
+    this.display=lov;
+  }
+
+  );
+
+    
+
+ 
+
+  
+
+
+    });
+     
+    
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
 
 
@@ -102,9 +128,13 @@ async initializeItems(): Promise<any> {
 async filterList(event) {
   this.foodList = await this.initializeItems();
   const searchTerm = event.srcElement.value;
+  this._route.navigate(['searchpage']);
 
   if (!searchTerm) {
+
+    
     return;
+
   }
 
   this.foodList = this.foodList.filter(currentFood => {

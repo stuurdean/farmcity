@@ -39,7 +39,11 @@ const routes: Routes = [
   {
     path: 'productby-category/:ref',
     loadChildren: () => import('./Products/productby-category/productby-category.module').then( m => m.ProductbyCategoryPageModule)
+  },  {
+    path: 'searchpage',
+    loadChildren: () => import('./searchpage/searchpage.module').then( m => m.SearchpagePageModule)
   },
+
 
 ];
 
