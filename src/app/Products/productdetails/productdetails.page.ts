@@ -18,7 +18,7 @@ export class ProductdetailsPage implements OnInit {
   qty : any=1;
   cart=[];
   constructor(private firestore : ProductsService, private _rout : ActivatedRoute,
-    private _cartservice :CartService,private storage: Storage) {
+    private _cartservice :CartService,private storage: Storage , private strore :Storage) {
 
 
   }
@@ -75,14 +75,21 @@ export class ProductdetailsPage implements OnInit {
       'productImage' : this.product.productImage,
       'productQty': this.qty});
 
-     // this.storage.set('cart',object);
+      this.storage.set('cart',object);
 
-      
+     
+      localStorage.setItem('cart',object);
 
      
       
     // set a key/value
+    
+    let test = JSON.parse(localStorage.getItem("cart") || "[]");
+     
 
+    console.log(test)
+
+   
 
     this.storage.get('cart').then((val) => {
       console.log('Cart', val);
