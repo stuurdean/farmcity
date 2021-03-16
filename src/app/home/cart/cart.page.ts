@@ -1,3 +1,4 @@
+import { DatabaseService } from './../../services/database.service';
 import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,11 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class CartPage implements OnInit {
 
   cartinfo=[]
-  constructor(private cartService :CartService) { }
+  constructor(private cartService :CartService,private sql :DatabaseService) { }
 
   ngOnInit() {
 
-     this.cartinfo=this.cartService.getCart()
+     this.cartinfo=this.sql.getall()
   }
 
   add(product)

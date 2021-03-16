@@ -1,3 +1,4 @@
+import { DatabaseService } from './../../services/database.service';
 import { CartService } from './../../services/cart.service';
 import { ProductsService } from './../../services/products.service';
 
@@ -16,10 +17,12 @@ export class ProductdetailsPage implements OnInit {
   addproduct: any;
   qty : any=1;
   cart=[];
-  constructor(private firestore : ProductsService, private _rout : ActivatedRoute,private _cartservice :CartService) {
+  constructor(private firestore : ProductsService, private _rout : ActivatedRoute,
+    private _cartservice :CartService, private sql :DatabaseService) {
 
 
   }
+
 
 
 
@@ -58,13 +61,14 @@ export class ProductdetailsPage implements OnInit {
 
   addToCart()
   {
-    this.addproduct={'id' : this.id,
+   /* this.addproduct={'id' : this.id,
       'productName' : this.product.productName,
       'productPrice' : this.product.productPrice,
       'productImage' : this.product.productImage,
       'productQty': this.qty}
 
-      this._cartservice.addTocart(this.addproduct)
+      this._cartservice.addTocart(this.addproduct)*/
+      this.sql.addproduct(this.id,this.product.productName,this.product.productPrice,this.qty,this.product.productImage)
 
   }
 

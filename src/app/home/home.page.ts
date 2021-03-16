@@ -1,7 +1,8 @@
+import { DatabaseService } from './../services/database.service';
 import { Profile } from 'src/app/profile';
 import { CartService } from './../services/cart.service';
 import { ProductsService } from './../services/products.service';
-
+import { Storage } from '@ionic/storage';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
@@ -43,19 +44,26 @@ resultArr=[];
   promotion : any;
   promotionNo :any;
   vegetables : any;
+  user :any;
   cartCount : BehaviorSubject<number>;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService) {}
 =======
   constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,public user:UserService,public _route : Router) {}
 >>>>>>> Stashed changes
+=======
+  constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService,  ) {}
+>>>>>>> Stashed changes
 
   //profile ={} as Profile;
+
   public profile :Profile;
    async ngOnInit() {
    // this.foodList = await this.initializeItems();
 
 
+<<<<<<< Updated upstream
   this.user.getuuser().subscribe(ex=>    
  { console.log(ex.email);
   this.firestore.collection('users').doc(ex.uid).valueChanges().subscribe(lov=>{
@@ -74,6 +82,9 @@ resultArr=[];
     });
      
     
+=======
+
+>>>>>>> Stashed changes
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
 
 
@@ -81,7 +92,10 @@ resultArr=[];
 
     });
 
+
+
     //Getting Cart Count
+
 
     this.cartCount =this.cartservice.getCartCount();
 
@@ -118,7 +132,7 @@ resultArr=[];
 
   }
 
-  
+
 async initializeItems(): Promise<any> {
   const foodList = await this.firestore.collection('products')
     .valueChanges().pipe(first()).toPromise();
@@ -145,7 +159,7 @@ async filterList(event) {
 }
 
 
-  
+
 
   view()
   {
@@ -167,7 +181,7 @@ async filterList(event) {
    // }
    // this.foodlist=this.foodlist.filter(currentfood=>{
  // if(currentfood.name&& searchTeam){
-    
+
   //  return(currentfood.name.toLowercase().indexOf(searchTeam.toLowercase())>-1 || currentfood)
 
 
