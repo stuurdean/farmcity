@@ -9,11 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { first } from 'rxjs/operators';
 import { UserService } from '../user.service';
-<<<<<<< Updated upstream
-import * as firebase from 'firebase';
-=======
 import { Router } from '@angular/router';
->>>>>>> Stashed changes
 
 
 @Component({
@@ -46,15 +42,12 @@ resultArr=[];
   vegetables : any;
   user :any;
   cartCount : BehaviorSubject<number>;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService) {}
-=======
-  constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,public user:UserService,public _route : Router) {}
->>>>>>> Stashed changes
-=======
-  constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService,  ) {}
->>>>>>> Stashed changes
+
+  constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService, private _route:Router) {}
+
+
+
+
 
   //profile ={} as Profile;
 
@@ -63,28 +56,6 @@ resultArr=[];
    // this.foodList = await this.initializeItems();
 
 
-<<<<<<< Updated upstream
-  this.user.getuuser().subscribe(ex=>    
- { console.log(ex.email);
-  this.firestore.collection('users').doc(ex.uid).valueChanges().subscribe(lov=>{
-    this.display=lov;
-  }
-
-  );
-
-    
-
- 
-
-  
-
-
-    });
-     
-    
-=======
-
->>>>>>> Stashed changes
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
 
 

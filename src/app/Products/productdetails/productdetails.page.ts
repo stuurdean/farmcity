@@ -1,7 +1,7 @@
-import { DatabaseService } from './../../services/database.service';
+
 import { CartService } from './../../services/cart.service';
 import { ProductsService } from './../../services/products.service';
-
+import { Storage } from '@ionic/storage';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,7 +18,7 @@ export class ProductdetailsPage implements OnInit {
   qty : any=1;
   cart=[];
   constructor(private firestore : ProductsService, private _rout : ActivatedRoute,
-    private _cartservice :CartService, private sql :DatabaseService) {
+    private _cartservice :CartService,private storage: Storage) {
 
 
   }
@@ -46,6 +46,8 @@ export class ProductdetailsPage implements OnInit {
 
     console.log(this.cart)
 
+    
+
   }
 
   subtract()
@@ -59,17 +61,33 @@ export class ProductdetailsPage implements OnInit {
       this.qty=this.qty+1;
   }
 
-  addToCart()
+ async addToCart()
   {
-   /* this.addproduct={'id' : this.id,
+    this.addproduct={'id' : this.id,
       'productName' : this.product.productName,
       'productPrice' : this.product.productPrice,
       'productImage' : this.product.productImage,
-      'productQty': this.qty}
+      'productQty': this.qty};
 
-      this._cartservice.addTocart(this.addproduct)*/
-      this.sql.addproduct(this.id,this.product.productName,this.product.productPrice,this.qty,this.product.productImage)
+      let object = JSON.stringify({'id' : this.id,
+      'productName' : this.product.productName,
+      'productPrice' : this.product.productPrice,
+      'productImage' : this.product.productImage,
+      'productQty': this.qty});
 
+     // this.storage.set('cart',object);
+
+      
+
+     
+      
+    // set a key/value
+
+
+    this.storage.get('cart').then((val) => {
+      console.log('Cart', val);
+      this._cartservice.addTocart(this.addproduct)
+    });
   }
 
 }

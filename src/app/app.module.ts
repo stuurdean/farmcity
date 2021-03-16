@@ -1,6 +1,5 @@
 import { DatabaseService } from './services/database.service';
 import { SQLite } from '@ionic-native/sqlite/ngx';
-
 import { IonicStorageModule } from '@ionic/storage';
  import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';

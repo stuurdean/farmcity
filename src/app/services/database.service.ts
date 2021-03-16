@@ -38,6 +38,16 @@ export class DatabaseService {
 
   public  addproduct(id,name,price,qty,img)
    {
+
+    this.sqlobj.transaction((tx) => {
+      tx.executeSql("INSERT INTO software (name, company, type, version) VALUES (?,?,?,?)", 
+      [ "offline-storage", "ionic", "native", "2.0"], (tx, result) => {
+        console.log("insertId: " + result.insertId);  // New Id number
+        console.log("rowsAffected: " + result.rowsAffected);  // 1
+      });
+    });
+
+
       let q ="INSERT INTO dance values(?)"
     // this.sqlobj.executeSql('Insert Into products values(?,?,?,?,?)',[id,name,price,qty,img]);
 

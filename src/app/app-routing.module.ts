@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -40,36 +39,10 @@ const routes: Routes = [
   {
     path: 'productby-category/:ref',
     loadChildren: () => import('./Products/productby-category/productby-category.module').then( m => m.ProductbyCategoryPageModule)
-  },  {
+  },
+  {
     path: 'searchpage',
     loadChildren: () => import('./searchpage/searchpage.module').then( m => m.SearchpagePageModule)
-=======
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'signin',
-    pathMatch: 'full'
-  },
-
-  {
-    path: 'signin',
-    loadChildren: () => import('./Auth/signin/signin.module').then( m => m.SigninPageModule)
-  },
-  {
-    path: 'signup',
-    loadChildren: () => import('./Auth/signup/signup.module').then( m => m.SignupPageModule)
-  },
-  {
-    path: 'forgotpassword',
-    loadChildren: () => import('./Auth/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
->>>>>>> Stashed changes
   },
 
 
