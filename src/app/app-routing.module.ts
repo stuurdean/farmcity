@@ -41,9 +41,13 @@ const routes: Routes = [
     loadChildren: () => import('./Products/productby-category/productby-category.module').then( m => m.ProductbyCategoryPageModule)
   },
   {
-    path: 'searchpage',
+    path: 'searchpage/:ref',
     loadChildren: () => import('./searchpage/searchpage.module').then( m => m.SearchpagePageModule)
+  },  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then( m => m.AccountPageModule)
   },
+
 
 
 ];

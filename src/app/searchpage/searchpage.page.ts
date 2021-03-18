@@ -14,13 +14,18 @@ export class SearchpagePage implements OnInit {
   constructor(private firestore: AngularFirestore) { }
 
   async ngOnInit() {
+
+
+    
+
+
     this.foodList = await this.initializeItems();
   }
 
 
   async initializeItems(): Promise<any> {
     const foodList = await this.firestore.collection('products')
-      .valueChanges().pipe(first()).toPromise();
+      .snapshotChanges().pipe(first()).toPromise();
     this.foodListBackup = foodList;
     return foodList;
   }

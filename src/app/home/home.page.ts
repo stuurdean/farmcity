@@ -219,7 +219,10 @@ async filterList(event) {
 
  //}
 
-
+ search(q) { 
+  console.log(q); 
+  this._route.navigate(['searchpage',q]);
+}
 
 
 

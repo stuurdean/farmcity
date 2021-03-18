@@ -59,4 +59,11 @@ getProducts()
     return this.firestore.collection('categories').valueChanges()
   }
 
+  //seach 
+
+  search(name)
+  {
+    return this.firestore.collection("products",ref => ref.where("productName","==",name));
+  }
+
 }

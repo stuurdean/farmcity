@@ -118,13 +118,13 @@
 
     <div class="productImg">
 
-      <img src="{{foodItem.productImage}}" />
+      <img src="{{foodItem.payload.doc.data().productImage}}" />
 
     </div>
 
     <ion-card-header>   
-      <ion-card-subtitle>{{foodItem.productName}}</ion-card-subtitle>
-      <ion-card-title>R{{foodItem.productPrice}}</ion-card-title>
+      <ion-card-subtitle>{{foodItem.payload.doc.data().productName}}</ion-card-subtitle>
+      <ion-card-title>R{{foodItem.payload.doc.data().productPrice}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
