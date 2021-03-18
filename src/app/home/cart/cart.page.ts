@@ -14,7 +14,7 @@ export class CartPage implements OnInit {
   user : any= localStorage.getItem('')
   constructor(private cartService :CartService) { }
 
-  
+
 
   ngOnInit()  {
 
@@ -23,11 +23,7 @@ export class CartPage implements OnInit {
       this.cartinfo = res;
      })
 
-     let test = JSON.parse(localStorage.getItem("cart") || "[]");
      
-
-    console.log(test)
-
   }
 
   add(qty,key)
