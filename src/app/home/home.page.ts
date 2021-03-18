@@ -41,6 +41,7 @@ resultArr=[];
   promotionNo :any;
   vegetables : any;
   user :any;
+  object : any;
   cartCount : BehaviorSubject<number>;
 
   constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService, private _route:Router) {}
@@ -54,7 +55,25 @@ resultArr=[];
   public profile :Profile;
    async ngOnInit() {
    // this.foodList = await this.initializeItems();
+this.userService.getuuser().subscribe(rez=>{
 
+console.log(rez.uid);
+
+localStorage.setItem("userid",rez.uid);
+
+}
+
+
+)
+  this.object = this.cartservice.getCart();
+   //
+   localStorage.setItem('c', "stuur");
+
+
+
+    let d =localStorage.getItem('c');
+
+    console.log("Name: "+d)
 
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
 

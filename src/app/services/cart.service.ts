@@ -1,6 +1,8 @@
 import { ToastController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 export interface Product {
 
@@ -19,9 +21,21 @@ export class CartService {
 
   private cart=[];
   private cartItemCount = new BehaviorSubject(0);
+  user : any = localStorage.getItem("userid")
 
-  constructor(public toastController :ToastController) { }
+  constructor(public toastController :ToastController,private _fire: AngularFirestore ) {
 
+    this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user)).valueChanges().subscribe(res=>{
+
+      this.cartItemCount.next(res.length)
+    })
+  
+   }
+    dockey :any;
+   lengthD : any;
+
+
+   
 
   async presentToast() {
     const toast = await this.toastController.create({
@@ -34,32 +48,74 @@ export class CartService {
 
   getCart()
   {
-    return this.cart
+    return this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user))
   }
   getCartCount(){
 
    return this.cartItemCount
   }
+  
+
+add(product)
+  {
+   
+
+  this._fire.collection("Cart",ref=> ref.where("id",'==',product.id)).snapshotChanges().subscribe(res=>{
+
+    console.log("Length:"+res.length)
+     this.lengthD = res.length;
+
+      
+        res.map( action => {
+          const key = action.payload.doc.id;
+            
+         this.dockey = key;
+
+         if(this.lengthD==0)
+         {
+          this._fire.collection("Cart").doc(this.dockey).update({"productQty":product.productQty});
+           console.log(this.dockey)
+         }
+         else{
+     
+          
+           console.log("no key")
+     
+         }
+         
+
+        });
+
+      
+      
+    }
+    );
+ 
+  
+   
+  }
+
+
 
 
   addTocart(product)
   {
-    let added= false;
-    for(let p of this.cart){
+    this._fire.collection("Cart",ref=> ref.where("id",'==',product.id).where("userid",'==',this.user)).valueChanges().subscribe(res=>{
 
-      if(p.id===product.id)
+      console.log(res.length)
+
+      if(res.length==0)
       {
-        p.productQty +=1;
-        added=true;
-        break;
+        this._fire.collection("Cart").add(product)
+        this.cartItemCount.next(this.cartItemCount.value+1)
       }
-    }
-    if(!added)
-    {
-      this.cart.push(product);
-      this.cartItemCount.next(this.cartItemCount.value+1);
-    }
+      else{
 
+
+
+      }
+
+    })
 
 
     this.presentToast();
@@ -70,22 +126,16 @@ export class CartService {
   {
 
   }
-  removeqty(product)
+  removeqty(key,qty)
   {
-      for (let [index,p] of this.cart.entries())
-      {
-        if (p.id===product.id)
-        {
-          p.productQty-=1;
+    console.log(key)
+      this._fire.collection("Cart").doc(key).update({
+        "productQty":qty
+      }).then( res => {
 
-
-          if (p.productQty==0)
-          {
-            this.cart.splice(index,1)
-          }
-
-        }
-      }
+      }).catch(err => {
+        console.log(err.message)
+      })
   }
 
   removeFromCart(product)

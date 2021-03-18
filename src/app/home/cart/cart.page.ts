@@ -9,21 +9,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartPage implements OnInit {
 
-  cartinfo=[]
-  constructor(private cartService :CartService,private sql :DatabaseService) { }
+  cartinfo : any;
+  object :any;
+  user : any= localStorage.getItem('')
+  constructor(private cartService :CartService) { }
 
-  ngOnInit() {
+  
 
-     this.cartinfo=this.sql.getall()
+  ngOnInit()  {
+
+     this.cartService.getCart().snapshotChanges().subscribe(res=>{
+
+      this.cartinfo = res;
+     })
+
+     let test = JSON.parse(localStorage.getItem("cart") || "[]");
+     
+
+    console.log(test)
+
   }
 
-  add(product)
+  add(qty,key)
   {
-    this.cartService.addTocart(product)
+    qty+=1;
+
+    this.cartService.removeqty(key,qty)
   }
-  subtract(item)
+  subtract(qty,key)
   {
-    this.cartService.removeqty(item)
+    qty-=1;
+    this.cartService.removeqty(qty,key)
   }
 
   remove(item)
