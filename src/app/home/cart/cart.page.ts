@@ -1,6 +1,7 @@
 import { DatabaseService } from './../../services/database.service';
-import { CartService } from './../../services/cart.service';
+import { CartService, Product } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
+import { Timestamp } from 'rxjs/internal/operators/timestamp';
 
 @Component({
   selector: 'app-cart',
@@ -11,31 +12,82 @@ export class CartPage implements OnInit {
 
   cartinfo : any;
   object :any;
-  user : any= localStorage.getItem('')
+  l : any;
+  cart :[];
+  total:any= 0;
+    user : any= localStorage.getItem('userid')
   constructor(private cartService :CartService) { }
 
 
 
   ngOnInit()  {
 
-     this.cartService.getCart().snapshotChanges().subscribe(res=>{
+
+  // get cart total
+
+  this.cartService.getCart().valueChanges().subscribe(next=>{
+
+    this.total = 0
+   for (let index = 0; index < next.length; index++) {
+
+     this.object=   next[index]
+
+     this.total=this.total+this.object.productPrice*this.object.productQty;
+
+
+   }
+
+   console.log(this.total)
+
+  })
+
+
+
+
+   this.cartService.getCart().snapshotChanges().subscribe(res=>{
+
+
 
       this.cartinfo = res;
+
+
+        res.find((action)=>{
+
+          this.object= action.payload.doc.data()
+
+
+
+
+
+        })
+
+
+
      })
 
-     
+
+
+
   }
 
   add(qty,key)
   {
+    this.total=0;
     qty+=1;
 
     this.cartService.removeqty(key,qty)
   }
   subtract(qty,key)
   {
+    this.total=0;
     qty-=1;
-    this.cartService.removeqty(qty,key)
+    if(qty==0)
+    {
+      this.remove(key);
+    }
+    else{
+    this.cartService.removeqty(key,qty)
+    }
   }
 
   remove(item)
@@ -43,6 +95,20 @@ export class CartPage implements OnInit {
     this.cartService.removeFromCart(item)
   }
 
+  placeOrder()
+{
+let order ={
+    "user": this.user,
+    "status": "placed",
+    "dateplaced": Date.now(),
+    "Products": this.object,
+    "Total ": this.total,
+    "Paid":false
+  }
+  console.log(order)
 
+  this.cartService.placeOder(order)
+
+}
 
 }

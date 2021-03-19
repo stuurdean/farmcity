@@ -29,13 +29,13 @@ export class CartService {
 
       this.cartItemCount.next(res.length)
     })
-  
+
    }
     dockey :any;
    lengthD : any;
 
 
-   
+
 
   async presentToast() {
     const toast = await this.toastController.create({
@@ -54,21 +54,21 @@ export class CartService {
 
    return this.cartItemCount
   }
-  
+
 
 add(product)
   {
-   
+
 
   this._fire.collection("Cart",ref=> ref.where("id",'==',product.id)).snapshotChanges().subscribe(res=>{
 
     console.log("Length:"+res.length)
      this.lengthD = res.length;
 
-      
+
         res.map( action => {
           const key = action.payload.doc.id;
-            
+
          this.dockey = key;
 
          if(this.lengthD==0)
@@ -77,22 +77,22 @@ add(product)
            console.log(this.dockey)
          }
          else{
-     
-          
+
+
            console.log("no key")
-     
+
          }
-         
+
 
         });
 
-      
-      
+
+
     }
     );
- 
-  
-   
+
+
+
   }
 
 
@@ -140,16 +140,39 @@ add(product)
 
   removeFromCart(product)
   {
-      for (let [index,p] of this.cart.entries())
-      {
-        if (p.id===product.id)
-        {
+    this._fire.collection("Cart").doc(product).delete().then(()=>{
 
-            this.cart.splice(index,1);
-            this.cartItemCount.next(this.cartItemCount.value-1)
 
-        }
-      }
+    })
+  }
+
+  remove()
+  {
+    this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user)).snapshotChanges().subscribe(res=>{
+
+
+        res.map(action=>{
+
+          this._fire.collection("Cart").doc(action.payload.doc.id).delete();
+
+
+
+        })
+
+
+    })
+  }
+
+  placeOder(oder)
+  {
+ this._fire.collection("Orders").add(oder).then(res=>{
+
+
+    this.remove();
+
+    console.log(res.id)
+ }
+ )
   }
 
 }
