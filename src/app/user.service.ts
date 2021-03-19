@@ -178,7 +178,13 @@ export class UserService {
     getuuser(){
      return this.fireAuth.authState;
 
-    
+
+    }
+
+    user()
+    {
+
+      return this._fire.collection("users").doc(localStorage.getItem("userid")).valueChanges()
     }
 
 

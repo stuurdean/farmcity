@@ -54,6 +54,14 @@ resultArr=[];
 
   public profile :Profile;
    async ngOnInit() {
+// get user
+
+this.userService.user().subscribe(res=>{
+
+  this.display= res
+})
+
+
    // this.foodList = await this.initializeItems();
 this.userService.getuuser().subscribe(rez=>{
 
@@ -62,6 +70,8 @@ console.log(rez.uid);
 localStorage.setItem("userid",rez.uid);
 
 }
+
+
 
 
 )
@@ -136,7 +146,7 @@ async filterList(event) {
 
   if (!searchTerm) {
 
-    
+
     return;
 
   }
