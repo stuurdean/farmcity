@@ -29,10 +29,12 @@
 
       </ion-menu-toggle>
 
-      <ion-item>
+      <ion-menu-toggle>
+      <ion-item [routerLink]="[ '/oders-list' ]" routerLinkActive="active">
         <ion-icon name="pricetags-outline" slot="start"></ion-icon>
         <ion-label>Order</ion-label>
       </ion-item>
+    </ion-menu-toggle>
       <ion-item>
         <ion-icon name="person-circle-outline" slot="start"></ion-icon>
 

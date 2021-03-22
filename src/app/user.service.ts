@@ -152,6 +152,7 @@ export class UserService {
 
      console.log('succefully login', info.user.uid)
 
+     localStorage.setItem("userid",info.user.uid)
 
         this.getUser(info.user.uid)
 

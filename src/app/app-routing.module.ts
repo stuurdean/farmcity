@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'signin',
     pathMatch: 'full'
   },
 
@@ -44,6 +44,15 @@ const routes: Routes = [
     path: 'searchpage',
     loadChildren: () => import('./searchpage/searchpage.module').then( m => m.SearchpagePageModule)
   },
+  {
+    path: 'oders-list',
+    loadChildren: () => import('./Products/oders-list/oders-list.module').then( m => m.OdersListPageModule)
+  },
+  {
+    path: 'odrde-details',
+    loadChildren: () => import('./Products/odrde-details/odrde-details.module').then( m => m.OdrdeDetailsPageModule)
+  },
+
 
 
 ];

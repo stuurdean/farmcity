@@ -51,16 +51,7 @@ export class CartPage implements OnInit {
       this.cartinfo = res;
 
 
-        res.find((action)=>{
-
-          this.object= action.payload.doc.data()
-
-
-
-
-
-        })
-
+       
 
 
      })
@@ -102,7 +93,7 @@ let order ={
     "status": "placed",
     "dateplaced": Date.now(),
     "Products": this.object,
-    "Total ": this.total,
+    "Total": this.total,
     "Paid":false
   }
   console.log(order)

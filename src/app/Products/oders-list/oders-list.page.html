@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons  slot="start">
+      <ion-back-button text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Oders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container">
+
+  <ng-container *ngIf="orderlength ==0; else oder" >
+
+    <div class="first">
+
+      <h1>Sorry</h1>
+      <h4> They are  no oders available</h4>
+    </div>
+
+  </ng-container>
+
+<ng-template #oder>
+
+  <ion-list *ngFor="let item of Orders">
+
+
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="./avatar-finn.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>Orde# {{item.payload.doc.id}} </h2>
+        <h3>Status {{item.payload.doc.data().status}}</h3>
+        <p>Total {{item.payload.doc.data().total |currency:'R'}}</p>
+      </ion-label>
+    </ion-item>
+
+
+
+
+
+  </ion-list>
+</ng-template>
+
+
+
+
+
+</ion-content>

@@ -50,10 +50,9 @@ resultArr=[];
 
 
 
-  //profile ={} as Profile;
 
   public profile :Profile;
-   async ngOnInit() {
+ ngOnInit() {
 // get user
 
 this.userService.user().subscribe(res=>{
@@ -62,7 +61,7 @@ this.userService.user().subscribe(res=>{
 })
 
 
-   // this.foodList = await this.initializeItems();
+   
 this.userService.getuuser().subscribe(rez=>{
 
 console.log(rez.uid);
@@ -75,15 +74,7 @@ localStorage.setItem("userid",rez.uid);
 
 
 )
-  this.object = this.cartservice.getCart();
-   //
-   localStorage.setItem('c', "stuur");
 
-
-
-    let d =localStorage.getItem('c');
-
-    console.log("Name: "+d)
 
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
 

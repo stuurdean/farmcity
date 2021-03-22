@@ -56,57 +56,19 @@ export class CartService {
   }
 
 
-add(product)
-  {
-
-
-  this._fire.collection("Cart",ref=> ref.where("id",'==',product.id)).snapshotChanges().subscribe(res=>{
-
-    console.log("Length:"+res.length)
-     this.lengthD = res.length;
-
-
-        res.map( action => {
-          const key = action.payload.doc.id;
-
-         this.dockey = key;
-
-         if(this.lengthD==0)
-         {
-          this._fire.collection("Cart").doc(this.dockey).update({"productQty":product.productQty});
-           console.log(this.dockey)
-         }
-         else{
-
-
-           console.log("no key")
-
-         }
-
-
-        });
-
-
-
-    }
-    );
-
-
-
-  }
-
-
-
-
   addTocart(product)
   {
-    this._fire.collection("Cart",ref=> ref.where("id",'==',product.id).where("userid",'==',this.user)).valueChanges().subscribe(res=>{
 
-      console.log(res.length)
+ return   this._fire.collection("Cart",ref=> ref.where("id",'==',product.id).where("userid",'==',this.user)).valueChanges().subscribe(res=>{
+
+     
 
       if(res.length==0)
       {
-        this._fire.collection("Cart").add(product)
+        this._fire.collection("Cart").add(product).then(res=>{
+
+          console.log("Added")
+        })
         this.cartItemCount.next(this.cartItemCount.value+1)
       }
       else{
@@ -122,10 +84,7 @@ add(product)
 
   }
 
-  addProductQty()
-  {
 
-  }
   removeqty(key,qty)
   {
     console.log(key)
@@ -140,15 +99,13 @@ add(product)
 
   removeFromCart(product)
   {
-    this._fire.collection("Cart").doc(product).delete().then(()=>{
-
-
-    })
+    this._fire.collection("Cart").doc(product).delete();
   }
 
   remove()
   {
-    this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user)).snapshotChanges().subscribe(res=>{
+
+  return  this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user)).snapshotChanges().subscribe(res=>{
 
 
         res.map(action=>{
@@ -165,14 +122,12 @@ add(product)
 
   placeOder(oder)
   {
- this._fire.collection("Orders").add(oder).then(res=>{
+ //this._fire.collection("Orders").add(oder);
 
 
     this.remove();
 
-    console.log(res.id)
- }
- )
+
   }
 
 }
