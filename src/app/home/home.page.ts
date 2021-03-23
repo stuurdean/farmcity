@@ -41,6 +41,7 @@ resultArr=[];
   promotionNo :any;
   vegetables : any;
   user :any;
+  object : any;
   cartCount : BehaviorSubject<number>;
 
   constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService, private _route:Router) {}
@@ -49,11 +50,30 @@ resultArr=[];
 
 
 
-  //profile ={} as Profile;
 
   public profile :Profile;
-   async ngOnInit() {
-   // this.foodList = await this.initializeItems();
+ ngOnInit() {
+// get user
+
+this.userService.user().subscribe(res=>{
+
+  this.display= res
+})
+
+
+   
+this.userService.getuuser().subscribe(rez=>{
+
+console.log(rez.uid);
+
+localStorage.setItem("userid",rez.uid);
+
+}
+
+
+
+
+)
 
 
     this.firestoreservice.getProducts().snapshotChanges().subscribe(result=>{
@@ -117,7 +137,7 @@ async filterList(event) {
 
   if (!searchTerm) {
 
-    
+
     return;
 
   }
@@ -219,9 +239,18 @@ async filterList(event) {
 
  //}
 
+
  search(q) { 
   console.log(q); 
-  this._route.navigate(['searchpage',q]);
+  this._route.navigate(['searchpage',q]);}
+logout(){
+  this.userService.logout().then(p=>{
+    console.log("loged-out")
+    this._route.navigate(['signin']);
+  }).catch(o=>{
+    console.log("error",o)
+  })
+
 }
 
 

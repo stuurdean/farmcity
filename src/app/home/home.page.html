@@ -6,7 +6,7 @@
    <ion-img src="../assets/logo.png"></ion-img>
    <div class="details">
 
-    <h1>{{display.name}}</h1>
+    <h1>{{display.name}}  {{display.surname}}</h1>
    <ion-note>{{display.email}}</ion-note>
 
    </div>
@@ -29,29 +29,27 @@
 
       </ion-menu-toggle>
 
-      <ion-item>
+      <ion-menu-toggle>
+      <ion-item [routerLink]="[ '/oders-list' ]" routerLinkActive="active">
         <ion-icon name="pricetags-outline" slot="start"></ion-icon>
         <ion-label>Order</ion-label>
       </ion-item>
+    </ion-menu-toggle>
       <ion-item>
         <ion-icon name="person-circle-outline" slot="start"></ion-icon>
 
-        <ion-label [routerLink]="[ '/','account' ]" routerLinkActive="active">My accunt</ion-label>
+
+       
+        <ion-label [routerLink]="[ '/account' ]" routerLinkActive="active" >My account</ion-label>
+
       </ion-item>
       <ion-item>
         <ion-icon name="settings-outline" slot="start"></ion-icon>
 
-        <ion-label>Settings</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="information-circle-outline" slot="start"></ion-icon>
-
-        <ion-label>Help</ion-label>
-      </ion-item>
-      <ion-item>
+      
 
         <ion-icon name="log-out-outline" slot="start"></ion-icon>
-        <ion-label>Log Out</ion-label>
+        <ion-label (click)="logout()">Log Out</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
@@ -115,7 +113,7 @@
 
       <ion-img src="../assets/logo.png"></ion-img>
 
-        
+
 
     </ion-card>
 
@@ -190,7 +188,7 @@
 
           <ion-card-header>
             <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
-            <ion-card-title>R{{item.payload.doc.data().productPrice}}</ion-card-title>
+            <ion-card-title>{{item.payload.doc.data().productPrice |currency:'R'}}</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
@@ -233,7 +231,7 @@
           </div>
           <ion-card-header>
             <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
-            <ion-card-title>R{{item.payload.doc.data().productPrice}}</ion-card-title>
+            <ion-card-title>{{item.payload.doc.data().productPrice|currency:'R'}}</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>

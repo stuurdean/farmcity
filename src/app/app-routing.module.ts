@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -8,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'signin',
     pathMatch: 'full'
   },
 
@@ -41,16 +42,32 @@ const routes: Routes = [
     loadChildren: () => import('./Products/productby-category/productby-category.module').then( m => m.ProductbyCategoryPageModule)
   },
   {
-    path: 'searchpage/:ref',
+    path: 'searchpage',
     loadChildren: () => import('./searchpage/searchpage.module').then( m => m.SearchpagePageModule)
-  },  {
+  },
+  {
+    path: 'oders-list',
+    loadChildren: () => import('./Products/oders-list/oders-list.module').then( m => m.OdersListPageModule)
+  },
+  {
+    path: 'odrde-details',
+    loadChildren: () => import('./Products/odrde-details/odrde-details.module').then( m => m.OdrdeDetailsPageModule)
+  },
+
+  {
     path: 'account',
-    loadChildren: () => import('./account/account.module').then( m => m.AccountPageModule)
+    loadChildren: () => import('./Auth/account/account.module').then( m => m.AccountPageModule)
   },
 
 
 
+
 ];
+
+
+
+
+
 
 @NgModule({
   imports: [

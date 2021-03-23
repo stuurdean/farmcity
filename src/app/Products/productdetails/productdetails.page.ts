@@ -18,7 +18,7 @@ export class ProductdetailsPage implements OnInit {
   qty : any=1;
   cart=[];
   constructor(private firestore : ProductsService, private _rout : ActivatedRoute,
-    private _cartservice :CartService,private storage: Storage) {
+    private _cartservice :CartService,private storage: Storage , private strore :Storage) {
 
 
   }
@@ -42,7 +42,7 @@ export class ProductdetailsPage implements OnInit {
     })
 
 
-    this.cart=this._cartservice.getCart();
+   // this.cart=this._cartservice.getCart();
 
     console.log(this.cart)
 
@@ -59,35 +59,25 @@ export class ProductdetailsPage implements OnInit {
   add()
   {
       this.qty=this.qty+1;
+
+
   }
 
- async addToCart()
+ addToCart()
   {
+
+    
     this.addproduct={'id' : this.id,
       'productName' : this.product.productName,
       'productPrice' : this.product.productPrice,
       'productImage' : this.product.productImage,
-      'productQty': this.qty};
+      'productQty': this.qty,
+      'userid':localStorage.getItem("userid")};
 
-      let object = JSON.stringify({'id' : this.id,
-      'productName' : this.product.productName,
-      'productPrice' : this.product.productPrice,
-      'productImage' : this.product.productImage,
-      'productQty': this.qty});
-
-     // this.storage.set('cart',object);
-
-      
+      this._cartservice.addTocart(this.addproduct);
 
      
-      
-    // set a key/value
-
-
-    this.storage.get('cart').then((val) => {
-      console.log('Cart', val);
-      this._cartservice.addTocart(this.addproduct)
-    });
+ 
   }
 
 }

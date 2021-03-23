@@ -1,6 +1,8 @@
 import { ToastController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 export interface Product {
 
@@ -19,8 +21,20 @@ export class CartService {
 
   private cart=[];
   private cartItemCount = new BehaviorSubject(0);
+  user : any = localStorage.getItem("userid")
 
-  constructor(public toastController :ToastController) { }
+  constructor(public toastController :ToastController,private _fire: AngularFirestore ) {
+
+    this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user)).valueChanges().subscribe(res=>{
+
+      this.cartItemCount.next(res.length)
+    })
+
+   }
+    dockey :any;
+   lengthD : any;
+
+
 
 
   async presentToast() {
@@ -34,7 +48,7 @@ export class CartService {
 
   getCart()
   {
-    return this.cart
+    return this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user))
   }
   getCartCount(){
 
@@ -44,62 +58,76 @@ export class CartService {
 
   addTocart(product)
   {
-    let added= false;
-    for(let p of this.cart){
 
-      if(p.id===product.id)
+ return   this._fire.collection("Cart",ref=> ref.where("id",'==',product.id).where("userid",'==',this.user)).valueChanges().subscribe(res=>{
+
+     
+
+      if(res.length==0)
       {
-        p.productQty +=1;
-        added=true;
-        break;
-      }
-    }
-    if(!added)
-    {
-      this.cart.push(product);
-      this.cartItemCount.next(this.cartItemCount.value+1);
-    }
+        this._fire.collection("Cart").add(product).then(res=>{
 
+          console.log("Added")
+        })
+        this.cartItemCount.next(this.cartItemCount.value+1)
+      }
+      else{
+
+
+
+      }
+
+    })
 
 
     this.presentToast();
 
   }
 
-  addProductQty()
+
+  removeqty(key,qty)
   {
+    console.log(key)
+      this._fire.collection("Cart").doc(key).update({
+        "productQty":qty
+      }).then( res => {
 
-  }
-  removeqty(product)
-  {
-      for (let [index,p] of this.cart.entries())
-      {
-        if (p.id===product.id)
-        {
-          p.productQty-=1;
-
-
-          if (p.productQty==0)
-          {
-            this.cart.splice(index,1)
-          }
-
-        }
-      }
+      }).catch(err => {
+        console.log(err.message)
+      })
   }
 
   removeFromCart(product)
   {
-      for (let [index,p] of this.cart.entries())
-      {
-        if (p.id===product.id)
-        {
+    this._fire.collection("Cart").doc(product).delete();
+  }
 
-            this.cart.splice(index,1);
-            this.cartItemCount.next(this.cartItemCount.value-1)
+  remove()
+  {
 
-        }
-      }
+  return  this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user)).snapshotChanges().subscribe(res=>{
+
+
+        res.map(action=>{
+
+          this._fire.collection("Cart").doc(action.payload.doc.id).delete();
+
+
+
+        })
+
+
+    })
+  }
+
+  placeOder(oder)
+  {
+ //this._fire.collection("Orders").add(oder);
+
+
+    this.remove();
+
+
   }
 
 }

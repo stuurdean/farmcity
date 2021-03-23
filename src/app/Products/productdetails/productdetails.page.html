@@ -14,24 +14,13 @@
   </div>
     <ion-card-header>
 
-      <ion-card-title> Price R{{product.productPrice}}</ion-card-title>
+      <ion-card-title> Price {{product.productPrice|currency:'R'}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
 
 
-     <ion-buttons slot="end"color="success"  >
-      <ion-button (click)="subtract()" color="success"  shape="round"   >
-        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="remove-circle"></ion-icon>
-      </ion-button>
 
-
-          {{qty}}
-      <ion-button (click)="add()"  color="success" >
-        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="add-circle"></ion-icon>
-      </ion-button>
-
-    </ion-buttons>
     </ion-card-content>
   </ion-card>
 

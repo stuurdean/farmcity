@@ -152,6 +152,7 @@ export class UserService {
 
      console.log('succefully login', info.user.uid)
 
+     localStorage.setItem("userid",info.user.uid)
 
         this.getUser(info.user.uid)
 
@@ -178,7 +179,17 @@ export class UserService {
     getuuser(){
      return this.fireAuth.authState;
 
-    
+
+    }
+
+    user()
+    {
+
+      return this._fire.collection("users").doc(localStorage.getItem("userid")).valueChanges()
+    }
+
+    logout(){
+      return this.fireAuth.signOut();
     }
 
 
