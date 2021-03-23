@@ -239,10 +239,6 @@ async filterList(event) {
 
  //}
 
-
- search(q) { 
-  console.log(q); 
-  this._route.navigate(['searchpage',q]);}
 logout(){
   this.userService.logout().then(p=>{
     console.log("loged-out")
@@ -250,7 +246,6 @@ logout(){
   }).catch(o=>{
     console.log("error",o)
   })
-
 }
 
 
