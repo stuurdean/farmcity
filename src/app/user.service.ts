@@ -188,5 +188,9 @@ export class UserService {
       return this._fire.collection("users").doc(localStorage.getItem("userid")).valueChanges()
     }
 
+    logout(){
+      return this.fireAuth.signOut();
+    }
+
 
 }

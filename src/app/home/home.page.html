@@ -38,22 +38,15 @@
       <ion-item>
         <ion-icon name="person-circle-outline" slot="start"></ion-icon>
 
-        <ion-label>My accunt</ion-label>
+        <ion-label [routerLink]="[ '/account' ]" routerLinkActive="active" >My account</ion-label>
       </ion-item>
       <ion-item>
         <ion-icon name="settings-outline" slot="start"></ion-icon>
 
-        <ion-label>Settings</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="information-circle-outline" slot="start"></ion-icon>
-
-        <ion-label>Help</ion-label>
-      </ion-item>
-      <ion-item>
+      
 
         <ion-icon name="log-out-outline" slot="start"></ion-icon>
-        <ion-label>Log Out</ion-label>
+        <ion-label (click)="logout()">Log Out</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>

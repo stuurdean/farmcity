@@ -239,7 +239,14 @@ async filterList(event) {
 
  //}
 
-
+logout(){
+  this.userService.logout().then(p=>{
+    console.log("loged-out")
+    this._route.navigate(['signin']);
+  }).catch(o=>{
+    console.log("error",o)
+  })
+}
 
 
 

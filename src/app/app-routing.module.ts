@@ -53,6 +53,12 @@ const routes: Routes = [
     loadChildren: () => import('./Products/odrde-details/odrde-details.module').then( m => m.OdrdeDetailsPageModule)
   },
 
+  {
+    path: 'account',
+    loadChildren: () => import('./Auth/account/account.module').then( m => m.AccountPageModule)
+  },
+
+
 
 
 ];

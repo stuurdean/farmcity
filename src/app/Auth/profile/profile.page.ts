@@ -13,6 +13,7 @@ import { Profile } from 'src/app/profile';
 })
 export class ProfilePage implements OnInit {
   profile ={} as Profile;
+
   Ref:any;
   constructor(public _data: UserService,private afs: AngularFirestore,public fireAuth: AngularFireAuth,public _route : ActivatedRoute) { }
 

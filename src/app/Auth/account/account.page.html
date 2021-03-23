@@ -1,0 +1,44 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content>
+    <div slot="fixed" class="container">
+
+
+        <div>
+            <ion-img class="profile" src="../assets/person.svg"></ion-img>
+
+      <h2>Create Profile</h2>
+        </div>
+        <form (ngSubmit)="update(UserData)" #UserData="ngForm" *ngIf="display">
+          <mat-form-field appearance="outline">
+            <mat-label>First-name</mat-label>
+            <input type="name"ngModel matInput #name="ngModel" name="name"[(ngModel)]="display.name" placeholder="Firstname"required>
+
+          </mat-form-field>
+          <br>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Surname</mat-label>
+            <input matInput  placeholder="surname" ngModel #surname="ngModel"[(ngModel)]="display.surname" name="surname" required>
+
+
+          </mat-form-field> <br>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Cellphone</mat-label>
+            <input matInput  type="tel"  placeholder="phone" ngModel #phone="ngModel"[(ngModel)]="display.phone" name="phone" required>
+
+          </mat-form-field> <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput  placeholder="address" ngModel #address="ngModel" [(ngModel)]="display.address"name="address" required>
+
+          </mat-form-field> <br>
+
+          <ion-button type="submit" color="#42d77d" >Save</ion-button>
+
+        </form>
+      </div>
+</ion-content>
