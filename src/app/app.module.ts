@@ -17,6 +17,10 @@ import { environment } from 'src/environments/environment';
 import { Camera } from '@ionic-native/camera/ngx';
 import {  CameraOptions } from '@ionic-native/camera/ngx';
 
+import { AuthGuard } from './auth.guard';
+
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +32,10 @@ import {  CameraOptions } from '@ionic-native/camera/ngx';
     IonicStorageModule.forRoot(),
 
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },SQLite,DatabaseService],
+  providers: 
+  [AuthGuard,
+  
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },SQLite,DatabaseService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
