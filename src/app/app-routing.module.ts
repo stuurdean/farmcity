@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { Paypal } from './paypal/paypal.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,9 @@ const routes: Routes = [
     path: 'productby-category/:ref',
     loadChildren: () => import('./Products/productby-category/productby-category.module').then( m => m.ProductbyCategoryPageModule)
   },
+
+  { path: 'paypal-web', component : Paypal},
+
   {
     path: 'searchpage',
     loadChildren: () => import('./searchpage/searchpage.module').then( m => m.SearchpagePageModule)

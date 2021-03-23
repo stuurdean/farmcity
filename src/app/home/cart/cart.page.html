@@ -71,14 +71,12 @@
 </div>
 
 
-</ion-content>
+</ion-content>1
 <ion-footer>
   <ion-toolbar>
 
     <div class="cart-button">
-      <h1>Total</h1>
-      <h2>{{total|currency:'R'}}</h2>
-    <ion-button  (click)="placeOrder()"  expand="block" color="success">
+    <ion-button  (click)="placeOrder()"  expand="block" color="success" [routerLink]="[ '/','productdetails',foodItem.id]" routerLinkActive="active">
       Place Order
 
     </ion-button>

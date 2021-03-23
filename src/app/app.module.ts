@@ -14,6 +14,8 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
+import { AuthGuard } from './auth.guard';
+import { PayPal } from '@ionic-native/paypal/ngx';
 
 
 @NgModule({
@@ -26,7 +28,10 @@ import { environment } from 'src/environments/environment';
     IonicStorageModule.forRoot(),
 
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },SQLite,DatabaseService],
+  providers: 
+  [AuthGuard,
+    PayPal, 
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },SQLite,DatabaseService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
