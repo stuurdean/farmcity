@@ -14,6 +14,8 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
+import { Camera } from '@ionic-native/camera/ngx';
+import {  CameraOptions } from '@ionic-native/camera/ngx';
 
 
 @NgModule({
@@ -22,7 +24,7 @@ import { environment } from 'src/environments/environment';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule,MatFormFieldModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule,
+    AngularFireAuthModule,Camera,
     IonicStorageModule.forRoot(),
 
   ],

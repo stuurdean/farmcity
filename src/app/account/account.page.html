@@ -10,7 +10,9 @@
 
 
       
-            <ion-img class="display" src="../assets/person.svg"></ion-img>
+            <ion-img class="display" src="{{ imgURL}}" height="200" width="200"></ion-img>
+            <ion-button (click)="getcamera()">From camera</ion-button>
+            <ion-button (click)="getGallary()">From Gallary</ion-button>
 
       <h2>display-update</h2>
       
