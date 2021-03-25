@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['paypal.component.scss'],
 })
 export class Paypal {
-  paymentAmount: string = '01.95';
+  paymentAmount: string = localStorage.getItem("total");
   currency: string = 'USD';
   currencyIcon: string = '$';
   constructor() {

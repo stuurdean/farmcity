@@ -2,6 +2,7 @@ import { DatabaseService } from './../../services/database.service';
 import { CartService, Product } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,7 @@ export class CartPage implements OnInit {
   cart :[];
   total:any= 0;
     user : any= localStorage.getItem('userid')
-  constructor(private cartService :CartService) { }
+  constructor(private cartService :CartService, private router :Router) { }
 
 
 
@@ -96,6 +97,10 @@ let order ={
     "Total": this.total,
     "Paid":false
   }
+
+  this.router.navigate(["/paypal"])
+
+  localStorage.setItem("total",this.total);
   console.log(order)
 
   this.cartService.placeOder(order)

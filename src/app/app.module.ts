@@ -14,6 +14,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
+import { PayPal } from '@ionic-native/paypal/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import {  CameraOptions } from '@ionic-native/camera/ngx';
 
@@ -34,6 +35,7 @@ import { AuthGuard } from './auth.guard';
   ],
   providers: 
   [AuthGuard,
+    PayPal,
   
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },SQLite,DatabaseService],
   bootstrap: [AppComponent],
