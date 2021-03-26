@@ -1,7 +1,7 @@
 import { DatabaseService } from './services/database.service';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { IonicStorageModule } from '@ionic/storage';
- import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -14,9 +14,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
-import { PayPal } from '@ionic-native/paypal/ngx';
-import { Camera } from '@ionic-native/camera/ngx';
-import {  CameraOptions } from '@ionic-native/camera/ngx';
+
 
 import { AuthGuard } from './auth.guard';
 
@@ -29,13 +27,13 @@ import { AuthGuard } from './auth.guard';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule,MatFormFieldModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule,Camera,
+    AngularFireAuthModule,
     IonicStorageModule.forRoot(),
 
   ],
   providers: 
   [AuthGuard,
-    PayPal,
+    ,
   
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },SQLite,DatabaseService],
   bootstrap: [AppComponent],

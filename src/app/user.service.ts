@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import{AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController, NavController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from '@angular/fire/database';
 //import { Profile } from './model/profile';
@@ -16,7 +16,7 @@ import { Profile } from './profile';
 })
 export class UserService {
 
-  constructor(public fireAuth: AngularFireAuth, public _fire:AngularFirestore,private Toast:ToastController,public afDatabase:AngularFireDatabase,public navCtrl:NavController,public _route : Router,private router:Router) { }
+  constructor(public fireAuth: AngularFireAuth, public _fire:AngularFirestore,private Toast:ToastController,public afDatabase:AngularFireDatabase,public navCtrl:NavController,public _route : Router,private router:Router,private toastr:ToastController,private loadingCtrl:LoadingController,) { }
   profile ={} as Profile;
 
     public person :Profile
@@ -47,7 +47,7 @@ export class UserService {
 
 
        cred.user.sendEmailVerification();
-
+       this.toast('succeful registerd','success')
         console.log('succeful registerd user',cred)
 
           await this.Toast.create({
@@ -64,7 +64,9 @@ export class UserService {
 
           }
 
-          ).then(res=>res.present());
+          ).then(res=>{
+            this.toast('Account created','success')
+          });
 
 
 
@@ -72,7 +74,7 @@ export class UserService {
       }).catch(async err=>{
         console.log('Error',err.message)
         console.log('Error',err.code)
-
+        this.toast(err.message,'danger')
 
         await this.Toast.create({
 
@@ -113,6 +115,7 @@ export class UserService {
 
 
     this._route.navigate(['home']);
+    this.toast('details saved','success')
      this.Toast.create({
 
       message:"details saved",
@@ -130,6 +133,7 @@ export class UserService {
 
    }).catch(res=>{
      console.log("error",res)
+     this.toast(res.message,'danger')
    })
      }
      recovery(email){
@@ -151,13 +155,15 @@ export class UserService {
       this.fireAuth.signInWithEmailAndPassword(email,password).then(info=>{
 
      console.log('succefully login', info.user.uid)
+     this.toast('succefully login','success')
 
      localStorage.setItem("userid",info.user.uid)
 
         this.getUser(info.user.uid)
 
       }).catch(err=>{
-        console.log('smothing went wrong',err.message)
+        console.log('smothing went wrong',err.message);
+        this.toast(err.message,'danger')
       })
     }
 
@@ -189,8 +195,26 @@ export class UserService {
     }
 
     logout(){
-      return this.fireAuth.signOut();
+      return this.fireAuth.signOut().then(rea=>{
+        this.toast('succefully logout','success')
+      }).catch(err=>{
+        this.toast(err.message,'danger')
+      });
     }
+    async toast(message,status){
+      const toast=await this.toastr.create({
+      
+      message:message,
+      position:'top',
+      color:status,
+      duration:2000
+      });
+      
+      toast.present();
+      
+      
+      
+      }
 
 
 }
