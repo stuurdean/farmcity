@@ -1,7 +1,6 @@
 
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { Paypal } from './paypal/paypal.component';
 import{AuthGuard} from './auth.guard'
 
 const routes: Routes = [
@@ -44,7 +43,7 @@ const routes: Routes = [
     loadChildren: () => import('./Products/productby-category/productby-category.module').then( m => m.ProductbyCategoryPageModule)
   },
 
-  { path: 'paypal-web', component : Paypal},
+
 
   {
     path: 'searchpage',
@@ -62,7 +61,11 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () => import('./Auth/account/account.module').then( m => m.AccountPageModule)
+  },  {
+    path: 'payfast',
+    loadChildren: () => import('./payfast/payfast.module').then( m => m.PayfastPageModule)
   },
+
 
 
 

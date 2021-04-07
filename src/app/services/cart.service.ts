@@ -61,7 +61,7 @@ export class CartService {
 
  return   this._fire.collection("Cart",ref=> ref.where("id",'==',product.id).where("userid",'==',this.user)).valueChanges().subscribe(res=>{
 
-     
+
 
       if(res.length==0)
       {
