@@ -1,21 +1,29 @@
-<script language="JavaScript" type="text/javascript">
 
-  function click_8d9ac438f32d1d351842226c6ec3df02( aform_reference ) {
-              var aform = aform_reference;
-              aform['amount'].value = Math.round( aform['amount'].value*Math.pow( 10,2 ) )/Math.pow( 10,2 );
+
+<html>
+<style>
+ html {
+    position: absolute;
+    left: 100px;
+    top: 150px;
   }
 
-  </script>
+  h2{
+    color: green;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    font-style: oblique;
+  }
 
-  <form action="https://www.payfast.co.za/eng/process" name="form_8d9ac438f32d1d351842226c6ec3df02" onsubmit="return click_8d9ac438f32d1d351842226c6ec3df02( this );" method="post">
-  <input type="hidden" name="cmd" value="_paynow">
-  <input type="hidden" name="receiver" value="17459406">
-  <input type="hidden" name="item_name" value="Apple">
-  <input type="hidden" name="amount" value="20.00">
-  <input type="hidden" name="item_description" value="">
-  <input type="hidden" name="return_url" value="https://github.com/stuurdean/farmcity">
-  <input type="hidden" name="cancel_url" value="https://github.com/stuurdean/farmcity">
+  </style>
 
-  <table>
-  <tr><td colspan=2 align=center><input type="image" src="https://www.payfast.co.za/images/buttons/light-large-paynow.png" width="174" height="59" alt="Pay Now" title="Pay Now with PayFast"></td></tr></table>
-  </form>
+<h2>Click  to Complete your Payment</h2>
+
+
+<a href="https://www.payfast.co.za/eng/process?cmd=_paynow&amp;
+receiver=17459406&amp;item_name=Apple&amp;amount=20.00&amp;
+return_url=https%3A%2F%2Fgithub.com%2Fstuurdean%2Ffarmcity&amp;
+cancel_url=https%3A%2F%2Fgithub.com%2Fstuurdean%2Ffarmcity">
+<img src="https://www.payfast.co.za/images/buttons/light-large-paynow.png" width="174"
+height="59" alt="Pay" title="Pay Now with PayFast" /></a>
+</html>
