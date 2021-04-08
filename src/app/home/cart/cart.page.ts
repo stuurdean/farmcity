@@ -52,7 +52,7 @@ export class CartPage implements OnInit {
       this.cartinfo = res;
 
 
-       
+
 
 
      })
@@ -98,7 +98,7 @@ let order ={
     "Paid":false
   }
 
-  this.router.navigate(["/paypal"])
+  this.router.navigate(["/payfast"])
 
   localStorage.setItem("total",this.total);
   console.log(order)
