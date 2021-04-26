@@ -12,7 +12,8 @@
   margin: 1% auto;
 }
 ion-icon{
-  color: #0f9244;
+  color: #00E5C1,
+
 }
 ion-img{
 
@@ -54,19 +55,29 @@ height: 270px;
 }
 .productImg
 {
-  width: 80%;
-  height: 150px;
+  width: 90%;
+  height: 100px;
 
   margin:   auto ;
   max-width: 600px;
   text-align: center;
   align-content: center;
+
+}
+
+.productImg img{
+
+  max-width: 100%;
+  height: 100px;
+
+
 }
 
 ion-card{
 
 
-
+width: 100%;
+position: relative;
 
 }
 
@@ -89,4 +100,109 @@ ion-card-content ion-icon{
 ion-toolbar{
 
   --min-height:50px
+}
+.burner{
+  background-color: #00E5C1;
+
+  height: 140px;
+  position: relative;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+.yellow{
+
+  background-color: #f8f521;
+
+  height: 140px;
+  position: relative;
+  text-align: center;
+  color: white;
+  width: 100%;
+
+}
+
+.greenbg{
+  background-color: #103f36;
+
+  height: 140px;
+  position: relative;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+
+
+.top
+{
+  height: 150px;
+  margin-top: 10px;
+
+}
+.top ion-slide{
+  width: 100% !important;
+}
+.first
+{
+width: 100%;
+}
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+
+}
+.top-left{
+
+  position: absolute;
+  top: 5px;
+  padding: 10px;
+  left: 5px;
+  border-radius: 3px;
+  color: #fff;
+}
+.percentage{
+
+  position: absolute;
+  top: 45px;
+  background-color: #00E5C1;
+  padding: 10px;
+  left: 5px;
+  border-radius: 3px;
+  color: #fff;
+  float: left;
+}
+
+
+.top-right h1{
+
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+text-shadow: #8c8c8c;
+font-weight: bolder;
+
+}
+.centered {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+
+}
+
+.centered  h1 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-shadow: #8c8c8c;
+  font-weight: bolder;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 5px;
+  right: 6px;
+}
+
+.bottom-right h1{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-shadow: #8c8c8c;
+  font-weight: bolder;;
 }

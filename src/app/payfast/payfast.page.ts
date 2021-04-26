@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payfast.page.scss'],
 })
 export class PayfastPage implements OnInit {
-
+total : any;
   constructor() { }
 
   ngOnInit() {
+
+    this.total=100.00
   }
 
 }

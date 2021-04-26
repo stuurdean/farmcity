@@ -24,3 +24,17 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.my-custom-class {
+
+  --spinner-color: #fff;
+
+  color: #fff;
+}
+.greenBtn{
+  background-color: #00B296;
+  color: #00E5C1,
+  
+
+}

@@ -31,8 +31,15 @@ resultArr=[];
  searchedUsers=[];
   slideOpts = {
     initialSlide: 0,
-    spaceBetween: 0,
      slidesPerView:2,
+    speed: 400
+  };
+
+  slideOpts1 = {
+    initialSlide: 0,
+    spaceBetween: 0,
+     slidesPerView:1,
+     autoplay:true,
     speed: 400
   };
   products : any;
@@ -61,7 +68,7 @@ this.userService.user().subscribe(res=>{
 })
 
 
-   
+
 this.userService.getuuser().subscribe(rez=>{
 
 console.log(rez.uid);

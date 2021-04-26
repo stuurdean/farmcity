@@ -16,7 +16,7 @@ import { Profile } from './profile';
 })
 export class UserService {
 
-  constructor(public fireAuth: AngularFireAuth, public _fire:AngularFirestore,private Toast:ToastController,public afDatabase:AngularFireDatabase,public navCtrl:NavController,public _route : Router,private router:Router,private toastr:ToastController,private loadingCtrl:LoadingController,) { }
+  constructor(public fireAuth: AngularFireAuth, public _fire:AngularFirestore,private Toast:ToastController,public afDatabase:AngularFireDatabase,public navCtrl:NavController,public _route : Router,private router:Router,private toastr:ToastController,private loadingCtrl:LoadingController) { }
   profile ={} as Profile;
 
     public person :Profile
@@ -150,14 +150,29 @@ export class UserService {
       })
     }
 
-    login(email,password){
+   async login(email,password){
+
+    const loading= await  this.loadingCtrl.create({
+      cssClass: 'my-custom-class',
+      spinner: 'dots',
+      showBackdrop:true
+         });
+
+
+         loading.present();
 
       this.fireAuth.signInWithEmailAndPassword(email,password).then(info=>{
 
      console.log('succefully login', info.user.uid)
      this.toast('succefully login','success')
 
+
+
+
+
      localStorage.setItem("userid",info.user.uid)
+
+     loading.dismiss();
 
         this.getUser(info.user.uid)
 
@@ -203,17 +218,17 @@ export class UserService {
     }
     async toast(message,status){
       const toast=await this.toastr.create({
-      
+
       message:message,
       position:'top',
       color:status,
       duration:2000
       });
-      
+
       toast.present();
-      
-      
-      
+
+
+
       }
 
 

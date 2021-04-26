@@ -39,14 +39,14 @@
         <ion-icon name="person-circle-outline" slot="start"></ion-icon>
 
 
-       
+
         <ion-label [routerLink]="[ '/account' ]" routerLinkActive="active" >My account</ion-label>
 
       </ion-item>
       <ion-item>
-        <ion-icon name="settings-outline" slot="start"></ion-icon>
 
-      
+
+
 
         <ion-icon name="log-out-outline" slot="start"></ion-icon>
         <ion-label (click)="logout()">Log Out</ion-label>
@@ -64,7 +64,9 @@
 
   <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title>Home</ion-title>
+      <ion-title>
+        <ion-img src="../assets/logo.png"></ion-img>
+      </ion-title>
 
         <ion-buttons slot="start">
           <ion-menu-button  color="success"  slot="start" menu="main"></ion-menu-button>
@@ -106,18 +108,124 @@
 
 
 
+    <ion-slides  [options]="slideOpts1" pager="true"  class="top" >
+
+      <!--let foodItem  of foodList-->
+      <ion-slide >
+
+        <ion-card class="greenbg">
+
+          <div class=" first" >
+
+            <img src="../assets/1.1.png" />
+
+          </div>
+
+          <div class="top-right">
+
+            <h1>Fresh Combos</h1>
+
+          </div>
 
 
 
-    <ion-card>
 
-      <ion-img src="../assets/logo.png"></ion-img>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide >
+
+        <ion-card class="yellow">
+
+          <div class=" first" >
+
+            <img src="../assets/fruits.png" style="width:50%;  object-fit: cover; float: right;" />
+
+          </div>
+
+          <div class="centered">
+
+            <h1>Fresh Fruits</h1>
+
+          </div>
 
 
 
-    </ion-card>
 
-    <div class="container">
+        </ion-card>
+
+
+      </ion-slide>
+
+      <ion-slide >
+
+        <ion-card class="burner">
+
+          <div class=" first" >
+
+            <img src="../assets/veg.png" style="width: 70%; height:150px; float: left;   " />
+
+          </div>
+
+          <div class="bottom-right">
+
+            <h1>Vegetables</h1>
+
+          </div>
+
+
+
+
+        </ion-card>
+
+
+      </ion-slide>
+
+    </ion-slides>
+
+
+
+    <ion-slides   [options]="slideOpts">
+
+
+
+      <ion-slide *ngFor="let item of vegetables">
+
+
+        <ion-card [routerLink]="[ '/','productdetails',item.payload.doc.id]" routerLinkActive="active">
+
+          <ion-badge class="top-left" color="danger">Sale</ion-badge>
+
+          <ion-badge class="percentage" color="danger">66% <br> off</ion-badge>
+          <div class="productImg">
+
+            <img src="{{item.payload.doc.data().productImage}}" />
+
+          </div>
+
+          <ion-card-header>
+            <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
+            <ion-card-title>{{item.payload.doc.data().productPrice|currency:'R'}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-icon  name="star"></ion-icon> 5
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide >
+
+
+          <ion-button color="success">
+            View All
+          </ion-button>
+
+      </ion-slide>
+
+
+    </ion-slides>
+    <div>
 
     <h4>Daily Deals</h4>
 
@@ -128,49 +236,49 @@
 
     <ng-template #promo>
 
+      <ion-slides   [options]="slideOpts">
 
+        <!--let foodItem  of foodList-->
+        <ion-slide *ngFor="let foodItem  of foodList">
 
+          <ion-card [routerLink]="[ '/','productdetails',foodItem.id]" routerLinkActive="active">
 
-    </ng-template>
-    <ion-slides   [options]="slideOpts">
+            <div class="productImg">
 
-      <!--let foodItem  of foodList-->
-      <ion-slide *ngFor="let foodItem  of foodList">
+              <img src="{{foodItem.productImage}}" />
 
-        <ion-card [routerLink]="[ '/','productdetails',foodItem.id]" routerLinkActive="active">
+            </div>
 
-          <div class="productImg">
+            <ion-card-header>
+              <ion-card-subtitle>{{foodItem.productName}}</ion-card-subtitle>
+              <ion-card-title>R{{foodItem.productPrice}}</ion-card-title>
+            </ion-card-header>
 
-            <img src="{{foodItem.productImage}}" />
+            <ion-card-content>
+              <ion-icon  name="star"></ion-icon> 5
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+
+        <ion-slide >
+          <div class="last-slide">
+
+            <ion-button color="success">
+              View All
+            </ion-button>
 
           </div>
 
-          <ion-card-header>
-            <ion-card-subtitle>{{foodItem.productName}}</ion-card-subtitle>
-            <ion-card-title>R{{foodItem.productPrice}}</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-
-      <ion-slide >
-        <div class="last-slide">
-
-          <ion-button color="success">
-            View All
-          </ion-button>
-
-        </div>
 
 
+        </ion-slide>
 
-      </ion-slide>
+
+      </ion-slides>
 
 
-    </ion-slides>
+    </ng-template>
+
 
     <h4>Fruits</h4>
     <ion-slides   [options]="slideOpts">
