@@ -185,73 +185,46 @@
 
 
 
-    <ion-slides   [options]="slideOpts">
+
+    <div id="container">
 
 
-
-      <ion-slide *ngFor="let item of vegetables">
-
-
-        <ion-card [routerLink]="[ '/','productdetails',item.payload.doc.id]" routerLinkActive="active">
-
-          <ion-badge class="top-left" color="danger">Sale</ion-badge>
-
-          <ion-badge class="percentage" color="danger">66% <br> off</ion-badge>
-          <div class="productImg">
-
-            <img src="{{item.payload.doc.data().productImage}}" />
-
-          </div>
-
-          <ion-card-header>
-            <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
-            <ion-card-title>{{item.payload.doc.data().productPrice|currency:'R'}}</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-icon  name="star"></ion-icon> 5
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-
-      <ion-slide >
-
-
-          <ion-button color="success">
-            View All
-          </ion-button>
-
-      </ion-slide>
-
-
-    </ion-slides>
-    <div>
-
-    <h4>Daily Deals</h4>
 
     <ng-container  *ngIf="promotionNo ==0; else promo "  >
 
-      <h3>They are Currently No Promotions </h3>
+
     </ng-container>
 
     <ng-template #promo>
+      <p>Daily Deals</p>
 
       <ion-slides   [options]="slideOpts">
 
-        <!--let foodItem  of foodList-->
-        <ion-slide *ngFor="let foodItem  of foodList">
 
-          <ion-card [routerLink]="[ '/','productdetails',foodItem.id]" routerLinkActive="active">
+        <ion-slide *ngFor="let item of promotion">
 
+
+          <ion-card [routerLink]="[ '/','productdetails',item.payload.doc.id]" routerLinkActive="active">
+
+
+
+            <ion-badge *ngIf="item.payload.doc.data().promoStatus" class="percentage" color="danger">{{(item.payload.doc.data().productPrice-item.payload.doc.data().promoPrice)/item.payload.doc.data().productPrice|percent}} <br> off</ion-badge>
             <div class="productImg">
 
-              <img src="{{foodItem.productImage}}" />
+              <img src="{{item.payload.doc.data().productImage}}" />
 
             </div>
 
             <ion-card-header>
-              <ion-card-subtitle>{{foodItem.productName}}</ion-card-subtitle>
-              <ion-card-title>R{{foodItem.productPrice}}</ion-card-title>
+              <ion-card-title>{{item.payload.doc.data().productName}}</ion-card-title>
+
+              <ng-container *ngIf="item.payload.doc.data().promoStatus, else noPromo" >
+                <ion-card-subtitle>{{item.payload.doc.data().promoPrice|currency:'R'}} &nbsp; <span class="originalPrice">{{item.payload.doc.data().productPrice|currency:'R'}}</span>  </ion-card-subtitle>
+              </ng-container>
+              <ng-template #noPromo>
+                <ion-card-subtitle>{{item.payload.doc.data().productPrice|currency:'R'}}</ion-card-subtitle>
+              </ng-template>
+
             </ion-card-header>
 
             <ion-card-content>
@@ -280,14 +253,18 @@
     </ng-template>
 
 
-    <h4>Fruits</h4>
+    <p>Fruits</p>
     <ion-slides   [options]="slideOpts">
 
 
       <ion-slide *ngFor="let item of fruits">
 
+
         <ion-card [routerLink]="[ '/','productdetails',item.payload.doc.id]" routerLinkActive="active">
 
+
+
+          <ion-badge *ngIf="item.payload.doc.data().promoStatus" class="percentage" color="danger">{{(item.payload.doc.data().productPrice-item.payload.doc.data().promoPrice)/item.payload.doc.data().productPrice|percent}} <br> off</ion-badge>
           <div class="productImg">
 
             <img src="{{item.payload.doc.data().productImage}}" />
@@ -295,8 +272,15 @@
           </div>
 
           <ion-card-header>
-            <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
-            <ion-card-title>{{item.payload.doc.data().productPrice |currency:'R'}}</ion-card-title>
+            <ion-card-title>{{item.payload.doc.data().productName}}</ion-card-title>
+
+            <ng-container *ngIf="item.payload.doc.data().promoStatus, else noPromo" >
+              <ion-card-subtitle>{{item.payload.doc.data().promoPrice|currency:'R'}} &nbsp; <span class="originalPrice">{{item.payload.doc.data().productPrice|currency:'R'}}</span>  </ion-card-subtitle>
+            </ng-container>
+            <ng-template #noPromo>
+              <ion-card-subtitle>{{item.payload.doc.data().productPrice|currency:'R'}}</ion-card-subtitle>
+            </ng-template>
+
           </ion-card-header>
 
           <ion-card-content>
@@ -321,7 +305,7 @@
 
     </ion-slides>
 
-    <h4>Vegetables</h4>
+    <p>Vegetables</p>
 
     <ion-slides   [options]="slideOpts">
 
@@ -329,17 +313,28 @@
 
       <ion-slide *ngFor="let item of vegetables">
 
+
         <ion-card [routerLink]="[ '/','productdetails',item.payload.doc.id]" routerLinkActive="active">
 
 
+
+          <ion-badge *ngIf="item.payload.doc.data().promoStatus" class="percentage" color="danger">{{(item.payload.doc.data().productPrice-item.payload.doc.data().promoPrice)/item.payload.doc.data().productPrice|percent}} <br> off</ion-badge>
           <div class="productImg">
 
             <img src="{{item.payload.doc.data().productImage}}" />
 
           </div>
+
           <ion-card-header>
-            <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
-            <ion-card-title>{{item.payload.doc.data().productPrice|currency:'R'}}</ion-card-title>
+            <ion-card-title>{{item.payload.doc.data().productName}}</ion-card-title>
+
+            <ng-container *ngIf="item.payload.doc.data().promoStatus, else noPromo" >
+              <ion-card-subtitle>{{item.payload.doc.data().promoPrice|currency:'R'}} &nbsp; <span class="originalPrice">{{item.payload.doc.data().productPrice|currency:'R'}}</span>  </ion-card-subtitle>
+            </ng-container>
+            <ng-template #noPromo>
+              <ion-card-subtitle>{{item.payload.doc.data().productPrice|currency:'R'}}</ion-card-subtitle>
+            </ng-template>
+
           </ion-card-header>
 
           <ion-card-content>

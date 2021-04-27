@@ -23,8 +23,8 @@ getProducts()
   getPromotion()
   {
 
+    return this.firestore.collection('products',ref=> ref.where('promoStatus','==',true ))
 
-    return this.firestore.collection('products',ref=> ref.where('promotion','==','Yes'))
 
   }
   //get fruits
@@ -59,7 +59,7 @@ getProducts()
     return this.firestore.collection('categories').valueChanges()
   }
 
-  //seach 
+  //seach
 
   search(name)
   {
