@@ -7,7 +7,9 @@
 
 
         <div>
-            <ion-img class="profile" src="../assets/person.svg"></ion-img>
+            <ion-img class="profile" src="{{imgURL}}"></ion-img>
+            <ion-button (click)="getCamera()">camera</ion-button>
+            <ion-button (click)="getGallery()">gallery</ion-button>
 
       <h2>Create Profile</h2>
         </div>

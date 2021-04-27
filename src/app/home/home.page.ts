@@ -10,6 +10,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { first } from 'rxjs/operators';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { Camera} from '@ionic-native/camera/ngx';
 
 
 @Component({
@@ -50,10 +51,10 @@ resultArr=[];
   user :any;
   object : any;
   cartCount : BehaviorSubject<number>;
+  imgURL;
+
 
   constructor( private firestoreservice :ProductsService,private cartservice : CartService,private firestore: AngularFirestore,private userService:UserService, private _route:Router) {}
-
-
 
 
 

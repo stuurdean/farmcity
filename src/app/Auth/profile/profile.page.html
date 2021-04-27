@@ -4,12 +4,14 @@
 
 <ion-content>
     <div slot="fixed" class="container">
-
+      
 
         <div>
-            <ion-img class="profile" src="../assets/person.svg"></ion-img>
+            <ion-img class="profile" src="{{imgURL}}"></ion-img>
+            
 
       <h2>Create Profile</h2>
+      
         </div>
         <form (ngSubmit)="update(UserData)" #UserData="ngForm">
           <mat-form-field appearance="outline">
@@ -38,7 +40,7 @@
           </mat-form-field> <br>
 
           <ion-button type="submit" color="#42d77d" >Save</ion-button>
-
+      
         </form>
       </div>
 </ion-content>
