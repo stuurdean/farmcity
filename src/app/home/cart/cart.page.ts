@@ -1,8 +1,11 @@
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { DatabaseService } from './../../services/database.service';
 import { CartService, Product } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-cart',
@@ -14,10 +17,10 @@ export class CartPage implements OnInit {
   cartinfo : any;
   object :any;
   l : any;
-  cart :[];
+  cart :any;
   total:any= 0;
     user : any= localStorage.getItem('userid')
-  constructor(private cartService :CartService, private router :Router) { }
+  constructor(private cartService :CartService, private router :Router, ) { }
 
 
 
@@ -33,12 +36,16 @@ export class CartPage implements OnInit {
 
      this.object=   next[index]
 
+
+
      this.total=this.total+this.object.productPrice*this.object.productQty;
 
 
    }
 
-   console.log(this.total)
+   this.cart= next;
+    console.log(next);
+   console.log(this.total);
 
   })
 
@@ -89,21 +96,23 @@ export class CartPage implements OnInit {
 
   placeOrder()
 {
+  //let now = firebase.default.firestore.Timestamp.fromDate(new Date())
 let order ={
     "user": this.user,
     "status": "placed",
     "dateplaced": Date.now(),
-    "Products": this.object,
+    "Products": this.cart,
     "Total": this.total,
     "Paid":false
   }
 
-  this.router.navigate(["/payfast"])
+ // this.router.navigate(["/payfast"])
 
-  localStorage.setItem("total",this.total);
+   //localStorage.setItem("total",this.total);
   console.log(order)
 
   this.cartService.placeOder(order)
+
 
 }
 

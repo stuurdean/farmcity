@@ -14,7 +14,7 @@ export class OdersListPage implements OnInit {
   orderlength: any;
   ngOnInit() {
 
-    /*this.cartservice.getOders().snapshotChanges().subscribe(result=>{
+    this.cartservice.getOrders().snapshotChanges().subscribe(result=>{
 
 
       this.Orders=result;
@@ -22,7 +22,7 @@ export class OdersListPage implements OnInit {
       this.orderlength = result.length
 
 
-    })*/
+    })
 
 
   }

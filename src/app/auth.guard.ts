@@ -26,13 +26,13 @@ constructor(private routes:Router,public _data: UserService,public afAuth: Angul
           if (user) {
             resolve(true);
           } else {
-            this.navCtrl.navigateRoot(['']);
+            this.navCtrl.navigateRoot(['signin']);
             resolve(false);
           }
         })
 
-      })  
- 
-  
+      })
+
+
 }
 }

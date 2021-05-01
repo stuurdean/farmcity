@@ -28,3 +28,20 @@ h4{
 
 
   }
+  .percentage{
+
+    position: absolute;
+    top: 5px;
+    background-color: #00E5C1;
+    padding: 10px;
+    right: 5px;
+    border-radius: 3px;
+    color: #fff;
+    float: left;
+    justify-content: center;
+  }
+  .originalPrice
+{
+  text-decoration: line-through;
+
+}

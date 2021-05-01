@@ -5,10 +5,10 @@
    <div class="header" *ngIf="display">
    <ion-img src="../assets/logo.png"></ion-img>
    <div class="details">
-  
+
     <h1>{{display.name}}  {{display.surname}}</h1>
    <ion-note>{{display.email}}</ion-note>
- 
+
    </div>
 
   </div>
@@ -216,7 +216,7 @@
             </div>
 
             <ion-card-header>
-              <ion-card-title>{{item.payload.doc.data().productName}}</ion-card-title>
+              <h4>{{item.payload.doc.data().productName}}</h4>
 
               <ng-container *ngIf="item.payload.doc.data().promoStatus, else noPromo" >
                 <ion-card-subtitle>{{item.payload.doc.data().promoPrice|currency:'R'}} &nbsp; <span class="originalPrice">{{item.payload.doc.data().productPrice|currency:'R'}}</span>  </ion-card-subtitle>
@@ -272,7 +272,7 @@
           </div>
 
           <ion-card-header>
-            <ion-card-title>{{item.payload.doc.data().productName}}</ion-card-title>
+            <h4>{{item.payload.doc.data().productName}}</h4>
 
             <ng-container *ngIf="item.payload.doc.data().promoStatus, else noPromo" >
               <ion-card-subtitle>{{item.payload.doc.data().promoPrice|currency:'R'}} &nbsp; <span class="originalPrice">{{item.payload.doc.data().productPrice|currency:'R'}}</span>  </ion-card-subtitle>
@@ -326,7 +326,7 @@
           </div>
 
           <ion-card-header>
-            <ion-card-title>{{item.payload.doc.data().productName}}</ion-card-title>
+            <h4>{{item.payload.doc.data().productName}}</h4>
 
             <ng-container *ngIf="item.payload.doc.data().promoStatus, else noPromo" >
               <ion-card-subtitle>{{item.payload.doc.data().promoPrice|currency:'R'}} &nbsp; <span class="originalPrice">{{item.payload.doc.data().productPrice|currency:'R'}}</span>  </ion-card-subtitle>

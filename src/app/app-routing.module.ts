@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'signin',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
 
@@ -54,14 +54,15 @@ const routes: Routes = [
     loadChildren: () => import('./Products/oders-list/oders-list.module').then( m => m.OdersListPageModule)
   },
   {
-    path: 'odrde-details',
+    path: 'odrde-details/:ref',
     loadChildren: () => import('./Products/odrde-details/odrde-details.module').then( m => m.OdrdeDetailsPageModule)
   },
 
   {
     path: 'account',
     loadChildren: () => import('./Auth/account/account.module').then( m => m.AccountPageModule)
-  },  {
+  },
+  {
     path: 'payfast',
     loadChildren: () => import('./payfast/payfast.module').then( m => m.PayfastPageModule)
   },

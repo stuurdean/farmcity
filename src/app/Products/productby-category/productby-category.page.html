@@ -23,10 +23,27 @@
   <div class="products" *ngFor="let item of product">
 
     <ion-card [routerLink]="[ '/','productdetails',item.payload.doc.id]" routerLinkActive="active">
-      <img src="{{item.payload.doc.data().productImage}}" />
+
+
+
+      <ion-badge *ngIf="item.payload.doc.data().promoStatus" class="percentage" color="danger">{{(item.payload.doc.data().productPrice-item.payload.doc.data().promoPrice)/item.payload.doc.data().productPrice|percent}} <br> off</ion-badge>
+      <div class="productImg">
+
+        <img src="{{item.payload.doc.data().productImage}}" />
+
+      </div>
+
       <ion-card-header>
-        <ion-card-subtitle>{{item.payload.doc.data().productName}}</ion-card-subtitle>
-        <ion-card-title>{{item.payload.doc.data().productPrice|currency:'R'}}</ion-card-title>
+        <h3>{{item.payload.doc.data().productName}}</h3>
+        
+
+        <ng-container *ngIf="item.payload.doc.data().promoStatus, else noPromo" >
+          <ion-card-subtitle>{{item.payload.doc.data().promoPrice|currency:'R'}} &nbsp; <span class="originalPrice">{{item.payload.doc.data().productPrice|currency:'R'}}</span>  </ion-card-subtitle>
+        </ng-container>
+        <ng-template #noPromo>
+          <ion-card-subtitle>{{item.payload.doc.data().productPrice|currency:'R'}}</ion-card-subtitle>
+        </ng-template>
+
       </ion-card-header>
 
       <ion-card-content>

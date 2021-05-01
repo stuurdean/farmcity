@@ -46,6 +46,8 @@ export class CartService {
     toast.present();
   }
 
+
+
   getCart()
   {
     return this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user))
@@ -59,25 +61,13 @@ export class CartService {
   addTocart(product)
   {
 
- return   this._fire.collection("Cart",ref=> ref.where("id",'==',product.id).where("userid",'==',this.user)).valueChanges().subscribe(res=>{
 
-
-
-      if(res.length==0)
-      {
         this._fire.collection("Cart").add(product).then(res=>{
 
           console.log("Added")
         })
         this.cartItemCount.next(this.cartItemCount.value+1)
-      }
-      else{
 
-
-
-      }
-
-    })
 
 
     this.presentToast();
@@ -104,11 +94,13 @@ export class CartService {
 
   remove()
   {
+    this._fire.collection("Cart")
 
-  return  this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user)).snapshotChanges().subscribe(res=>{
+    this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user)).snapshotChanges().subscribe(res=>{
 
 
-        res.map(action=>{
+
+      res.map(action=>{
 
           this._fire.collection("Cart").doc(action.payload.doc.id).delete();
 
@@ -117,17 +109,37 @@ export class CartService {
         })
 
 
+
     })
   }
 
   placeOder(oder)
   {
- //this._fire.collection("Orders").add(oder);
 
+ this._fire.collection("Orders").doc(Date.now().toString()).set(oder).then(()=>
 
+  {
     this.remove();
+  }
+ )
 
 
+
+
+
+  }
+
+  getOrders()
+  {
+
+
+    return this._fire.collection("Orders",ref=> ref.where("user",'==',this.user))
+
+  }
+
+  EachOrder()
+  {
+    return this._fire.collection("Orders")
   }
 
 }

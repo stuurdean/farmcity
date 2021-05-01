@@ -41,7 +41,8 @@ resultArr=[];
     spaceBetween: 0,
      slidesPerView:1,
      autoplay:true,
-    speed: 400
+    speed: 400,
+    loop:true
   };
   products : any;
   fruits : any;

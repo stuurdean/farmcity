@@ -1,9 +1,46 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>OdrdeDetails</ion-title>
+    <ion-buttons  slot="start">
+      <ion-back-button text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Order deDetails</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div *ngIf="details">
+
+
+    <ion-card >
+      <h3>Order: {{id}}</h3>
+
+      <h3>Date: {{details.dateplaced |date:'d MMMM  y'}}</h3>
+      <h3>Total: {{details.Total|currency:'R'}}</h3>
+
+
+    </ion-card>
+
+<ion-list-header>Items</ion-list-header>
+<ion-list *ngFor="let item of details.Products">
+
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img src="{{item.productImage}}">
+    </ion-thumbnail>
+    <ion-label>
+      <h4>{{item.productName}}</h4>
+      <p>{{item.productPrice |currency: 'R'}}  &nbsp; &nbsp; Quantity: {{item.productQty}}    </p>
+    </ion-label>
+    <ion-button Color="success" fill="outline" slot="end">Review</ion-button>
+  </ion-item>
+
+</ion-list>
+
+  </div>
+
+
+
+
 
 </ion-content>
