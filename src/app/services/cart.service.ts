@@ -74,7 +74,7 @@ export class CartService {
       else{
 
         products.push(product)
-        this.cartItemCount.next(+1)
+
       }
     }
     else{
@@ -84,6 +84,7 @@ export class CartService {
     }
 
     localStorage.setItem('products', JSON.stringify(products));
+    this.cartItemCount.next(products.length)
     console.log(products)
 
 
@@ -136,6 +137,7 @@ export class CartService {
     let storageProducts = JSON.parse(localStorage.getItem('products'));
     let products = storageProducts.filter(product => product.id !== id );
     localStorage.setItem('products', JSON.stringify(products));
+    this.cartItemCount.next(this.cartItemCount.value-1)
   }
 
   remove()
