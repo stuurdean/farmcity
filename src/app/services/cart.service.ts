@@ -25,10 +25,10 @@ export class CartService {
 
   constructor(public toastController :ToastController,private _fire: AngularFirestore ) {
 
-    this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user)).valueChanges().subscribe(res=>{
+    this.cart = JSON.parse(localStorage.getItem('products'));
 
-      this.cartItemCount.next(res.length)
-    })
+      this.cartItemCount.next(this.cart.length)
+
 
    }
     dockey :any;
@@ -50,13 +50,46 @@ export class CartService {
 
   getCart()
   {
-    return this._fire.collection("Cart",ref=> ref.where("userid",'==',this.user))
+    return JSON.parse(localStorage.getItem('products')) || [];
   }
   getCartCount(){
 
    return this.cartItemCount
   }
+  cartcart(product)
+{
 
+    let products = [];
+    if(localStorage.getItem('products')){
+        products = JSON.parse(localStorage.getItem('products')) || [];
+
+     let   item = products.find(item => item.id == product.id);
+
+      if (item) {
+
+      item.productQty += product.productQty;
+
+          console.log(item)
+      }
+      else{
+
+        products.push(product)
+        this.cartItemCount.next(+1)
+      }
+    }
+    else{
+      products.push(product);
+
+
+    }
+
+    localStorage.setItem('products', JSON.stringify(products));
+    console.log(products)
+
+
+
+
+}
 
   addTocart(product)
   {
@@ -77,19 +110,32 @@ export class CartService {
 
   removeqty(key,qty)
   {
-    console.log(key)
-      this._fire.collection("Cart").doc(key).update({
-        "productQty":qty
-      }).then( res => {
 
-      }).catch(err => {
-        console.log(err.message)
-      })
+      // retrieve it (Or create a blank array if there isn't any info saved yet),
+      var items = JSON.parse(localStorage.getItem('products')) || [];
+
+
+      // add to it, only if it's empty
+      var item = items.find(item => item.id === key);
+
+      if (item) {
+        item.productQty = qty;
+      }
+
+      // then put it back.
+      localStorage.setItem('products', JSON.stringify(items));
+      console.log(items);
+
+    console.log(key)
+
+
   }
 
-  removeFromCart(product)
+  removeFromCart(id)
   {
-    this._fire.collection("Cart").doc(product).delete();
+    let storageProducts = JSON.parse(localStorage.getItem('products'));
+    let products = storageProducts.filter(product => product.id !== id );
+    localStorage.setItem('products', JSON.stringify(products));
   }
 
   remove()

@@ -177,6 +177,7 @@ export class UserService {
         this.getUser(info.user.uid)
 
       }).catch(err=>{
+        loading.dismiss();
         console.log('smothing went wrong',err.message);
         this.toast(err.message,'danger')
       })

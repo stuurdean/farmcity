@@ -46,7 +46,7 @@ export class ProductdetailsPage implements OnInit {
 
     console.log(this.cart)
 
-    
+
 
   }
 
@@ -66,7 +66,7 @@ export class ProductdetailsPage implements OnInit {
  addToCart()
   {
 
-    
+
     this.addproduct={'id' : this.id,
       'productName' : this.product.productName,
       'productPrice' : this.product.productPrice,
@@ -74,10 +74,10 @@ export class ProductdetailsPage implements OnInit {
       'productQty': this.qty,
       'userid':localStorage.getItem("userid")};
 
-      this._cartservice.addTocart(this.addproduct);
+      this._cartservice.cartcart(this.addproduct);
 
-     
- 
+
+
   }
 
 }

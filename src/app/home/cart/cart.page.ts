@@ -24,45 +24,18 @@ export class CartPage implements OnInit {
 
 
 
-  ngOnInit()  {
+ async ngOnInit()  {
 
 
   // get cart total
 
-  this.cartService.getCart().valueChanges().subscribe(next=>{
-
-    this.total = 0
-   for (let index = 0; index < next.length; index++) {
-
-     this.object=   next[index]
+  this.calculateTotal()
+   //this.cartService.getCart();
 
 
 
-     this.total=this.total+this.object.productPrice*this.object.productQty;
+      this.cartinfo = this.cartService.getCart();
 
-
-   }
-
-   this.cart= next;
-    console.log(next);
-   console.log(this.total);
-
-  })
-
-
-
-
-   this.cartService.getCart().snapshotChanges().subscribe(res=>{
-
-
-
-      this.cartinfo = res;
-
-
-
-
-
-     })
 
 
 
@@ -71,10 +44,14 @@ export class CartPage implements OnInit {
 
   add(qty,key)
   {
-    this.total=0;
+
     qty+=1;
 
     this.cartService.removeqty(key,qty)
+
+    this.cartinfo = this.cartService.getCart();
+
+    this.calculateTotal();
   }
   subtract(qty,key)
   {
@@ -87,11 +64,16 @@ export class CartPage implements OnInit {
     else{
     this.cartService.removeqty(key,qty)
     }
+
+    this.cartinfo = this.cartService.getCart();
+    this.calculateTotal()
   }
 
   remove(item)
   {
     this.cartService.removeFromCart(item)
+    this.cartinfo = this.cartService.getCart();
+    this.calculateTotal()
   }
 
   placeOrder()
@@ -114,6 +96,27 @@ let order ={
   this.cartService.placeOder(order)
 
 
+}
+
+calculateTotal()
+{
+  let next= this.cartService.getCart();
+  this.total = 0
+  for (let index = 0; index < next.length; index++) {
+
+    this.object=   next[index]
+
+
+
+    this.total=this.total+this.object.productPrice*this.object.productQty;
+
+
+
+
+  }
+  this.cart= next;
+  console.log(next);
+ console.log(this.total);
 }
 
 }
