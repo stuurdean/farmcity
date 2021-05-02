@@ -27,7 +27,7 @@
     <ion-item>
 
       <ion-label [routerLink]="[ '/','odrde-details',item.payload.doc.id]" routerLinkActive="active">
-        <h3>Order# {{item.payload.doc.id}} </h3>
+        <h3>Order: {{item.payload.doc.id}} </h3>
         <h4 *ngIf="item.payload.doc.data().Paid ; else  pay">Status: {{item.payload.doc.data().status}}</h4>
         <ng-template #pay>
           <h4 > Status: Pending payments</h4>
