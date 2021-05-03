@@ -91,7 +91,7 @@ export class CartService {
     this.cartItemCount.next(products.length)
     console.log(products)
 
-
+    this.presentToast();
 
 
 }
