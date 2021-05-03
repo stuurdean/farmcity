@@ -65,14 +65,23 @@ export class ProductdetailsPage implements OnInit {
 
  addToCart()
   {
+      let price;
 
+      if (this.product.promoStatus)
+      {
+        price= this.product.promoPrice
+      }
+      else{
+
+        price = this.product.productPrice
+      }
 
     this.addproduct={'id' : this.id,
       'productName' : this.product.productName,
-      'productPrice' : this.product.productPrice,
+      'productPrice' : price,
       'productImage' : this.product.productImage,
       'productQty': this.qty,
-      'userid':localStorage.getItem("userid")};
+      };
 
       this._cartservice.cartcart(this.addproduct);
 

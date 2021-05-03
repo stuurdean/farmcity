@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>OrderSum</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-card *ngIf="user">
+
+
+    <ion-card-subtitle>
+
+      Names: {{user.name}} &nbsp; {{user.surname}}
+    </ion-card-subtitle>
+
+    <ion-card-subtitle>
+
+      Contact {{user.phone}}
+    </ion-card-subtitle>
+
+    <ion-card-subtitle>
+
+      Address{{user.address}}
+    </ion-card-subtitle>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-subtitle>Order Total :{{total|currency:'R'}}</ion-card-subtitle>
+    <ion-card-subtitle>Delivery : {{delivery|currency:'R'}}</ion-card-subtitle>
+    <ion-card-subtitle >Sub-Total:{{subtot|currency:'R'}} </ion-card-subtitle>
+      <ion-card-content *ngIf="total<299">
+          spend R300 and more and get delivery free
+      </ion-card-content>
+  </ion-card>
+<ion-button color="success">check out</ion-button>
+</ion-content>

@@ -88,12 +88,13 @@ let order ={
     "Paid":false
   }
 
- // this.router.navigate(["/payfast"])
+  localStorage.setItem("total",this.total);
+  this.router.navigate(["/order-sum"])
 
-   //localStorage.setItem("total",this.total);
+
   console.log(order)
 
-  this.cartService.placeOder(order)
+ // this.cartService.placeOder(order)
 
 
 }

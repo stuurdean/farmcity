@@ -9,7 +9,11 @@
 
 <ion-content>
 
+  <div  class="center"  *ngIf="total==0" >
 
+    <h1>Opps!!</h1>
+    <h3> Your cart is empty</h3>
+  </div>
 
   <div *ngFor="let item of cartinfo">
 
@@ -73,14 +77,14 @@
 
 
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="total!=0">
   <ion-toolbar>
 
     <div class="cart-button">
-      
-    <ion-button  (click)="placeOrder()"  expand="block" color="success">
-      Secure-Checkout
-
+      <h2>Total {{total|currency:'R'}}</h2>
+    <ion-button  (click)="placeOrder()"  color="success" slot="end" >
+      Procced
+      <ion-icon name="chevron-forward-circle-outline"></ion-icon>
     </ion-button>
   </div>
   </ion-toolbar>
