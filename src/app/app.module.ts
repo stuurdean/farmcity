@@ -14,7 +14,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
-import { Camera} from '@ionic-native/camera/ngx';
+
 
 import { AuthGuard } from './auth.guard';
 
@@ -31,10 +31,10 @@ import { AuthGuard } from './auth.guard';
     IonicStorageModule.forRoot(),
 
   ],
-  providers: 
-  [AuthGuard,Camera
+  providers:
+  [AuthGuard
     ,
-  
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },SQLite,DatabaseService],
   bootstrap: [AppComponent],
 })

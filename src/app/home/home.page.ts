@@ -10,7 +10,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { first } from 'rxjs/operators';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import { Camera} from '@ionic-native/camera/ngx';
+
 
 
 @Component({

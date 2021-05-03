@@ -25,9 +25,13 @@ export class CartService {
 
   constructor(public toastController :ToastController,private _fire: AngularFirestore ) {
 
-    this.cart = JSON.parse(localStorage.getItem('products'));
+    if(localStorage.getItem('products'))
+    {
+      this.cart = JSON.parse(localStorage.getItem('products'));
 
       this.cartItemCount.next(this.cart.length)
+    }
+
 
 
    }
