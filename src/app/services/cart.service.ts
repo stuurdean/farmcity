@@ -166,7 +166,7 @@ export class CartService {
     })
   }
 
-  update(id)
+  updates(id)
   {
     this._fire.collection("Orders").doc(id).update({
 

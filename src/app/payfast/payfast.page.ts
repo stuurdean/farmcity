@@ -29,7 +29,7 @@ details: any;
   }
 update(){
 
-  this.cartService
+  this.cartService.updates(this.id)
 }
 
 
