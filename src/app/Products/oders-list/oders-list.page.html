@@ -31,6 +31,7 @@
         <h4 *ngIf="item.payload.doc.data().Paid ; else  pay">Status: {{item.payload.doc.data().status}}</h4>
         <ng-template #pay>
           <h4 > Status: Pending payments</h4>
+          
         </ng-template>
 
         <p>Total {{item.payload.doc.data().Total |currency:'R'}}</p>

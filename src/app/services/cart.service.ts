@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 export interface Product {
 
@@ -23,7 +24,7 @@ export class CartService {
   private cartItemCount = new BehaviorSubject(0);
   user : any = localStorage.getItem("userid")
 
-  constructor(public toastController :ToastController,private _fire: AngularFirestore ) {
+  constructor(public toastController :ToastController,private _fire: AngularFirestore,public _route : Router, ) {
 
     if(localStorage.getItem('products'))
     {
@@ -165,13 +166,27 @@ export class CartService {
     })
   }
 
+  update(id)
+  {
+    this._fire.collection("Orders").doc(id).update({
+
+      "Paid":true
+    }
+
+    )
+  }
+
   placeOder(oder)
   {
-
- this._fire.collection("Orders").doc(Date.now().toString()).set(oder).then(()=>
+      const key =Date.now().toString();
+ this._fire.collection("Orders").doc(key).set(oder).then(res=>
 
   {
-    this.remove();
+
+    console.log(key)
+
+    localStorage.removeItem("products")
+    this._route.navigate(['payfast',key])
   }
  )
 

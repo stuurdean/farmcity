@@ -17,12 +17,12 @@
 
     <ion-card-subtitle>
 
-      Contact {{user.phone}}
+      Contact: {{user.phone}}
     </ion-card-subtitle>
 
     <ion-card-subtitle>
 
-      Address{{user.address}}
+      Address: {{user.address}}
     </ion-card-subtitle>
   </ion-card>
 
@@ -34,5 +34,5 @@
           spend R300 and more and get delivery free
       </ion-card-content>
   </ion-card>
-<ion-button color="success">check out</ion-button>
+<ion-button (click)="order()" color="success">check out</ion-button>
 </ion-content>

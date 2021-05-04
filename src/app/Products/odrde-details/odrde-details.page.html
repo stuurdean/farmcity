@@ -18,6 +18,10 @@
       <h3>Date: {{details.dateplaced |date:'d MMMM  y'}}</h3>
       <h3>Total: {{details.Total|currency:'R'}}</h3>
 
+      <ion-button  [routerLink]="[ '/','payfast',id]" routerLinkActive="active" color="success" > paynow </ion-button>
+
+
+
 
     </ion-card>
 

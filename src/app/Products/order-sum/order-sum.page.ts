@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { UserService } from 'src/app/user.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,11 +13,13 @@ export class OrderSumPage implements OnInit {
   delivery : any;
   subtot : any;
   user : any;
-  constructor(private _service :UserService) { }
+  Cart : any;
+  userid : any= localStorage.getItem('userid');
+  constructor(private _service :UserService, private _cartservice : CartService) { }
 
   ngOnInit() {
 
-
+    this.Cart = this._cartservice.getCart();
     this._service.user().subscribe(red=>{
       this.user = red
 
@@ -36,7 +39,24 @@ export class OrderSumPage implements OnInit {
 
 
   }
+order()
+{
+  let orders ={
+    "user": this.userid,
+    "names":this.user.name +" "+ this.user.surname,
+    "contact": this.user.phone,
+    "Address": this.user.address,
+    "status": "placed",
+    "dateplaced": Date.now(),
+    "Products": this.Cart,
+    "Total": this.subtot,
+    "Paid":false
+  }
 
+  console.log(orders)
+
+  this._cartservice.placeOder(orders)
+}
 
 
 }

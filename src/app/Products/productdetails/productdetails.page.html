@@ -13,7 +13,7 @@
     <img src="{{product.productImage}}" />
   </div>
     <ion-card-header>
-      <ion-card-subtitle *ngIf="product.promoStatus, else noPromo"> <span class="originalPrice"> Was {{product.promoPrice|currency:'R'}} </span> <br>  Now {{product.productPrice|currency:'R'}}</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="product.promoStatus, else noPromo"> <span class="originalPrice"> Was {{product.productPrice|currency:'R'}} </span> <br>  Now {{product.promoPrice|currency:'R'}}</ion-card-subtitle>
 
       <ng-template #noPromo>
         <ion-card-title   > Price {{product.productPrice|currency:'R'}}</ion-card-title>
@@ -60,7 +60,7 @@
 <ion-footer>
   <ion-toolbar>
     <div class="cart-button">
-  
+
     <ion-button  (click)="addToCart()"  expand="block" color="success">
       Add To cart
       <ion-icon slot="end" name="cart"></ion-icon>

@@ -63,9 +63,10 @@ const routes: Routes = [
     loadChildren: () => import('./Auth/account/account.module').then( m => m.AccountPageModule)
   },
   {
-    path: 'payfast',
+    path: 'payfast/:ref',
     loadChildren: () => import('./payfast/payfast.module').then( m => m.PayfastPageModule)
-  },  {
+  },
+  {
     path: 'order-sum',
     loadChildren: () => import('./Products/order-sum/order-sum.module').then( m => m.OrderSumPageModule)
   },
